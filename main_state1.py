@@ -69,7 +69,7 @@ class Cookie:
         self.state = "Run"
         self.image = load_image('Image\\cookie_run.png')
         self.slide_image = load_image('Image\\cookie_run_slide.png')
-        self.jump_image = load_image('Image\\cookie_run_jump.png')
+        self.jump_image = load_image('Image\\cookie_run_jump2.png')
         self.dir = 1
         self.gravityY = 0
 
@@ -87,6 +87,8 @@ class Cookie:
             self.frame = (self.frame + 1) % 3
         elif self.state == "Jump" and self.state == "Slide":
             self.frame = 0
+        elif self.state == "Jump" and self.Y <= 250:
+            self.state = "Run"
         '''self.x += self.dir
         if self.x >= 800:
             self.dir = -1
@@ -99,7 +101,7 @@ class Cookie:
         elif self.state == "Slide":
             self.slide_image.draw(self.X, self.Y - 17)
         elif self.state == "Jump":
-            self.image.clip_draw(0, 0, 75, 87, self.X, self.Y)
+            self.jump_image.draw(self.X, self.Y)
 
 def enter():
     global cookie, grass, first_background
@@ -145,8 +147,8 @@ def handle_events():
         elif event.type == SDL_KEYUP:
             if event.key == SDLK_DOWN:
                 cookie.state = "Run"
-            elif event.key == SDLK_UP:
-                cookie.state = "Run"
+            '''elif event.key == SDLK_UP:
+                cookie.state = "Run"'''
 
         '''elif event.type == SDL_KEYDOWN and event.key == SDLK_UP:
             if (cookie.Y - 45) == 195:
