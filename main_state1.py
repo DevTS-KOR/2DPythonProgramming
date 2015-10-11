@@ -70,7 +70,8 @@ class Cookie:
         self.image = load_image('Image\\cookie_run.png')
         self.slide_image = load_image('Image\\cookie_run_slide.png')
         self.jump_image = load_image('Image\\cookie_run_jump2.png')
-        self.dir = 1
+        self.jump_image2 = load_image('Image\\cookie_run_jump.png')
+        self.dir = 0
         self.gravityY = 0
 
     def gravity(self):
@@ -101,7 +102,10 @@ class Cookie:
         elif self.state == "Slide":
             self.slide_image.draw(self.X, self.Y - 17)
         elif self.state == "Jump":
-            self.jump_image.draw(self.X, self.Y)
+            if self.dir % 2 == 1:
+                self.jump_image.draw(self.X, self.Y)
+            elif self.dir % 2 == 0:
+                self.jump_image2.draw(self.X, self.Y)
 
 def enter():
     global cookie, grass, first_background
@@ -139,6 +143,7 @@ def handle_events():
                 cookie.state = "Slide"
             elif event.key == SDLK_UP:
                 cookie.state = "Jump"
+                cookie.dir += 1
                 if (cookie.Y - 45) == 195:
                     cookie.gravityY = -35
             elif event.key == SDLK_2:

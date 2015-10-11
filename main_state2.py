@@ -41,7 +41,7 @@ class Second_ground:
         self.ground_Y = 400
         self.scroll_Y = 400
         self.First_ground_1 = load_image('Image\\Second_ground_1.png')
-        self.First_ground_2 = load_image('Image\\Second_ground_2.png')
+        self.First_ground_2 = load_image('Image\\Third_Background2.png')
         self.First_ground_3 = load_image('Image\\Second_ground_3.png')
         self.First_ground_4 = load_image('Image\\Second_ground_4.png')
         self.First_ground_5 = load_image('Image\\Second_ground_5.png')
@@ -68,8 +68,9 @@ class Cookie:
         self.state = "Run"
         self.image = load_image('Image\\cookie_run2.png')
         self.slide_image = load_image('Image\\cookie_run_slide2.png')
-        self.jump_image = load_image('Image\\cookie_run_jump.png')
-        #self.dir = 1
+        self.jump_image = load_image('Image\\cookie_run_jump2_2.png')
+        self.jump_image2 = load_image('Image\\cookie_run_jump_2.png')
+        self.dir = 0
         self.gravityX = 0
 
     def gravity(self):
@@ -86,6 +87,8 @@ class Cookie:
             self.frame = (self.frame + 1) % 3
         elif self.state == "Jump" and self.state == "Slide":
             self.frame = 0
+        elif self.state == "Jump" and self.X >= 550:
+            self.state = "Run"
         '''self.x += self.dir
         if self.x >= 800:
             self.dir = -1
@@ -98,7 +101,10 @@ class Cookie:
         elif self.state == "Slide":
             self.slide_image.draw(self.X + 17, self.Y)
         elif self.state == "Jump":
-            self.image.clip_draw(0, 0, 87, 75, self.X, self.Y)
+            if self.dir % 2 == 1:
+                self.jump_image.draw(self.X, self.Y)
+            elif self.dir % 2 == 0:
+                self.jump_image2.draw(self.X, self.Y)
 
 def enter():
     global cookie, ground, second_background
@@ -136,14 +142,15 @@ def handle_events():
                 cookie.state = "Slide"
             elif event.key == SDLK_UP:
                 cookie.state = "Jump"
+                cookie.dir += 1
                 if (cookie.X - 45) == 515:
                     cookie.gravityX = 35
 
         elif event.type == SDL_KEYUP:
             if event.key == SDLK_DOWN:
                 cookie.state = "Run"
-            elif event.key == SDLK_UP:
-                cookie.state = "Run"
+            '''elif event.key == SDLK_UP:
+                cookie.state = "Run"'''
 
         '''elif event.type == SDL_KEYDOWN and event.key == SDLK_UP:
             if (cookie.Y - 45) == 195:
