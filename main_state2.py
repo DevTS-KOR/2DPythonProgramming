@@ -2,12 +2,13 @@ import random
 import json
 import os
 
-from pico2d2 import *
+from pico2d import *
 from datetime import *
 
 import time
 import game_framework
 import title_state
+import main_state3
 
 
 
@@ -41,7 +42,7 @@ class Second_ground:
         self.ground_Y = 400
         self.scroll_Y = 400
         self.First_ground_1 = load_image('Image\\Second_ground_1.png')
-        self.First_ground_2 = load_image('Image\\Third_Background2.png')
+        self.First_ground_2 = load_image('Image\\Second_ground_2.png')
         self.First_ground_3 = load_image('Image\\Second_ground_3.png')
         self.First_ground_4 = load_image('Image\\Second_ground_4.png')
         self.First_ground_5 = load_image('Image\\Second_ground_5.png')
@@ -145,6 +146,8 @@ def handle_events():
                 cookie.dir += 1
                 if (cookie.X - 45) == 515:
                     cookie.gravityX = 35
+            elif event.key == SDLK_3:
+                game_framework.change_state(main_state3)
 
         elif event.type == SDL_KEYUP:
             if event.key == SDLK_DOWN:

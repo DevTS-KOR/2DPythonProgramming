@@ -1,6 +1,6 @@
 import game_framework
 import main_state1
-from pico2d2 import *
+from pico2d import *
 
 
 name = "TitleState"
