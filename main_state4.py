@@ -8,7 +8,8 @@ from datetime import *
 import time
 import game_framework
 import title_state
-import main_state4
+import main_state1
+
 
 
 name = "MainState"
@@ -18,68 +19,68 @@ ground = None
 second_background = None
 font = None
 
-class Third_Background:
+class Second_Background:
     def __init__(self):
         self.X = 400
         self.Y = 400
-        self.image = load_image('Image\\Third_Background.png')
-        self.image2 = load_image('Image\\Third_Background2.png')
+        self.image = load_image('Image\\Fourth_Background.png')
+        self.image2 = load_image('Image\\Fourth_Background2.png')
 
 
     def update(self):
-        self.X = self.X + 5
-        if self.X == 800:
-            self.X = 400
+        self.Y = self.Y + 5
+        if self.Y == 1200:
+            self.Y = 400
 
     def draw(self):
         self.image.draw(self.X, self.Y)
-        self.image2.draw(self.X - 800, self.Y)
+        self.image2.draw(self.X, self.Y - 800)
 
-class Third_ground:
+class Second_ground:
     def __init__(self):
         self.ground_X = 400
         self.ground_Y = 400
-        self.scroll_X = 400
-        self.First_ground_1 = load_image('Image\\Third_ground_1.png')
-        self.First_ground_2 = load_image('Image\\Third_ground_2.png')
-        self.First_ground_3 = load_image('Image\\Third_ground_3.png')
-        self.First_ground_4 = load_image('Image\\Third_ground_4.png')
-        self.First_ground_5 = load_image('Image\\Third_ground_5.png')
-        self.First_ground_6 = load_image('Image\\Third_ground_6.png')
+        self.scroll_Y = 400
+        self.First_ground_1 = load_image('Image\\Fourth_ground.png')
+        self.First_ground_2 = load_image('Image\\Fourth_ground2.png')
+        self.First_ground_3 = load_image('Image\\Fourth_ground3.png')
+        self.First_ground_4 = load_image('Image\\Fourth_ground4.png')
+        self.First_ground_5 = load_image('Image\\Fourth_ground5.png')
+        self.First_ground_6 = load_image('Image\\Fourth_ground6.png')
 
     def update(self):
-        self.ground_X = self.ground_X + 15
-        if self.ground_X >= (self.scroll_X * (12)) + 5:
-            self.ground_X = 400
+        self.ground_Y = self.ground_Y + 15
+        if self.ground_Y >= (self.scroll_Y * (12)) + 5:
+            self.ground_Y = 400
 
     def draw(self):
         self.First_ground_1.draw(self.ground_X, self.ground_Y)
-        self.First_ground_2.draw(self.ground_X - (self.scroll_X * 2), self.ground_Y)
-        self.First_ground_3.draw(self.ground_X - (self.scroll_X * 4), self.ground_Y)
-        self.First_ground_4.draw(self.ground_X - (self.scroll_X * 6), self.ground_Y)
-        self.First_ground_5.draw(self.ground_X - (self.scroll_X * 8), self.ground_Y)
-        self.First_ground_6.draw(self.ground_X - (self.scroll_X * 10), self.ground_Y)
+        self.First_ground_2.draw(self.ground_X, self.ground_Y - (self.scroll_Y * 2))
+        self.First_ground_3.draw(self.ground_X, self.ground_Y - (self.scroll_Y * 4))
+        self.First_ground_4.draw(self.ground_X, self.ground_Y - (self.scroll_Y * 6))
+        self.First_ground_5.draw(self.ground_X, self.ground_Y - (self.scroll_Y * 8))
+        self.First_ground_6.draw(self.ground_X, self.ground_Y - (self.scroll_Y * 10))
 
 
 class Cookie:
     def __init__(self):
-        self.X, self.Y = 650, 560
+        self.X, self.Y = 240, 560
         self.frame = 0
         self.state = "Run"
-        self.image = load_image('Image\\cookie_run3.png')
-        self.slide_image = load_image('Image\\cookie_run_slide3.png')
-        self.jump_image = load_image('Image\\cookie_run_jump2_3.png')
-        self.jump_image2 = load_image('Image\\cookie_run_jump_3.png')
+        self.image = load_image('Image\\cookie_run4.png')
+        self.slide_image = load_image('Image\\cookie_run_slide4.png')
+        self.jump_image = load_image('Image\\cookie_run_jump2_4.png')
+        self.jump_image2 = load_image('Image\\cookie_run_jump_4.png')
         self.dir = 0
-        self.gravityY = 0
+        self.gravityX = 0
 
     def gravity(self):
-        if (self.Y + 45 + self.gravityY) < 605:
-            self.gravityY += 4
-            self.Y += self.gravityY
+        if (self.X + 45 + self.gravityX) > 285:
+            self.gravityX -= 4
+            self.X += self.gravityX
         else:
-            self.Y = 560
-            self.gravityY = 0
+            self.X = 240
+            self.gravityX = 0
 
     def update(self):
         self.gravity()
@@ -87,7 +88,7 @@ class Cookie:
             self.frame = (self.frame + 1) % 3
         elif self.state == "Jump" and self.state == "Slide":
             self.frame = 0
-        elif self.state == "Jump" and self.Y >= 550:
+        elif self.state == "Jump" and self.X <= 250:
             self.state = "Run"
         '''self.x += self.dir
         if self.x >= 800:
@@ -97,9 +98,9 @@ class Cookie:
 
     def draw(self):
         if self.state == "Run":
-            self.image.clip_draw(self.frame * 75, 0, 75, 87, self.X, self.Y)
+            self.image.clip_draw(0, self.frame * 75, 87, 75, self.X, self.Y)
         elif self.state == "Slide":
-            self.slide_image.draw(self.X, self.Y + 17)
+            self.slide_image.draw(self.X - 17, self.Y)
         elif self.state == "Jump":
             if self.dir % 2 == 1:
                 self.jump_image.draw(self.X, self.Y)
@@ -107,17 +108,17 @@ class Cookie:
                 self.jump_image2.draw(self.X, self.Y)
 
 def enter():
-    global cookie, ground, Third_background
+    global cookie, ground, second_background
     cookie = Cookie()
-    ground = Third_ground()
-    Third_background = Third_Background()
+    ground = Second_ground()
+    second_background = Second_Background()
 
 
 def exit():
-    global cookie, ground, Third_background
+    global cookie, ground, second_background
     del(cookie)
     del(ground)
-    del(Third_background)
+    del(second_background)
 
 
 def pause():
@@ -143,10 +144,10 @@ def handle_events():
             elif event.key == SDLK_UP:
                 cookie.state = "Jump"
                 cookie.dir += 1
-                if (cookie.Y + 45) == 605:
-                    cookie.gravityY = -35
-            elif event.key == SDLK_4:
-                game_framework.change_state(main_state4)
+                if (cookie.X + 45) == 285:
+                    cookie.gravityX = 35
+            elif event.key == SDLK_1:
+                game_framework.change_state(main_state1)
 
         elif event.type == SDL_KEYUP:
             if event.key == SDLK_DOWN:
@@ -162,14 +163,14 @@ def handle_events():
 
 
 def update():
-    Third_background.update()
+    second_background.update()
     ground.update()
     cookie.update()
 
 
 def draw():
     clear_canvas()
-    Third_background.draw()
+    second_background.draw()
     ground.draw()
     cookie.draw()
     update_canvas()

@@ -41,6 +41,7 @@ class Grass:
         self.ground_X = 400
         self.ground_Y = 400
         self.scroll_Y = 400
+        self.First_ground_0 = load_image('image\\First_ground_0.png')
         self.First_ground_1 = load_image('Image\\First_ground_1.png')
         self.First_ground_2 = load_image('Image\\First_ground_2.png')
         self.First_ground_3 = load_image('Image\\First_ground_3.png')
@@ -50,16 +51,17 @@ class Grass:
 
     def update(self):
         self.ground_X = self.ground_X - 15
-        if self.ground_X == (self.scroll_Y * (-10)) + 5:
+        if self.ground_X <= (self.scroll_Y * (-12)) + 5:
             self.ground_X = 400
 
     def draw(self):
-        self.First_ground_1.draw(self.ground_X, self.ground_Y)
-        self.First_ground_2.draw(self.ground_X + (self.scroll_Y * 2), self.ground_Y)
-        self.First_ground_3.draw(self.ground_X + (self.scroll_Y * 4), self.ground_Y)
-        self.First_ground_4.draw(self.ground_X + (self.scroll_Y * 6), self.ground_Y)
-        self.First_ground_5.draw(self.ground_X + (self.scroll_Y * 8), self.ground_Y)
-        self.First_ground_6.draw(self.ground_X + (self.scroll_Y * 10), self.ground_Y)
+        self.First_ground_0.draw(self.ground_X, self.ground_Y)
+        self.First_ground_1.draw(self.ground_X + (self.scroll_Y * 2), self.ground_Y)
+        self.First_ground_2.draw(self.ground_X + (self.scroll_Y * 4), self.ground_Y)
+        self.First_ground_3.draw(self.ground_X + (self.scroll_Y * 6), self.ground_Y)
+        self.First_ground_4.draw(self.ground_X + (self.scroll_Y * 8), self.ground_Y)
+        self.First_ground_5.draw(self.ground_X + (self.scroll_Y * 10), self.ground_Y)
+        self.First_ground_6.draw(self.ground_X + (self.scroll_Y * 12), self.ground_Y)
 
 
 class Cookie:
