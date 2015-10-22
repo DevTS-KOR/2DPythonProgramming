@@ -23,14 +23,19 @@ class First_Background:
     def __init__(self):
         self.X = 400
         self.Y = 400
+        self.Speed = 5
+        self.frame = 0
         self.image = load_image('Image\\First_Background.png')
         self.image2 = load_image('Image\\First_Background2.png')
 
 
     def update(self):
-        self.X = self.X - 5
-        if self.X == -400:
-            self.X = 400
+        self.X = self.X - self.Speed
+        self.frame = self.frame + 1
+        if self.frame % 10 == 0:
+            self.Speed += 0.1
+        if self.X <= -400 - self.Speed:
+            self.X = 395 - self.Speed
 
     def draw(self):
         self.image.draw(self.X, self.Y)
@@ -38,9 +43,12 @@ class First_Background:
 
 class Grass:
     def __init__(self):
-        self.ground_X = 400
+        self.First = 400
+        self.ground_X = 1200
         self.ground_Y = 400
         self.scroll_Y = 400
+        self.Speed = 15
+        self.frame = 0
         self.First_ground_0 = load_image('image\\First_ground_0.png')
         self.First_ground_1 = load_image('Image\\First_ground_1.png')
         self.First_ground_2 = load_image('Image\\First_ground_2.png')
@@ -50,18 +58,25 @@ class Grass:
         self.First_ground_6 = load_image('Image\\First_ground_6.png')
 
     def update(self):
-        self.ground_X = self.ground_X - 15
-        if self.ground_X <= (self.scroll_Y * (-12)) + 5:
-            self.ground_X = 400
+        self.First = self.First - self.Speed
+        self.ground_X = self.ground_X - self.Speed
+        self.frame = self.frame + 1
+        if self.frame % 10 == 0:
+            self.Speed += 0.1
+        if self.First <= -800 - self.Speed:
+            self.First = 4785 - self.Speed
+        if self.ground_X <= -4400 - self.Speed:
+            self.ground_X = 1185 - self.Speed
+
 
     def draw(self):
-        self.First_ground_0.draw(self.ground_X, self.ground_Y)
-        self.First_ground_1.draw(self.ground_X + (self.scroll_Y * 2), self.ground_Y)
-        self.First_ground_2.draw(self.ground_X + (self.scroll_Y * 4), self.ground_Y)
-        self.First_ground_3.draw(self.ground_X + (self.scroll_Y * 6), self.ground_Y)
-        self.First_ground_4.draw(self.ground_X + (self.scroll_Y * 8), self.ground_Y)
-        self.First_ground_5.draw(self.ground_X + (self.scroll_Y * 10), self.ground_Y)
-        self.First_ground_6.draw(self.ground_X + (self.scroll_Y * 12), self.ground_Y)
+        self.First_ground_0.draw(self.First, self.ground_Y)
+        self.First_ground_1.draw(self.ground_X, self.ground_Y)
+        self.First_ground_2.draw(self.ground_X + (self.scroll_Y * 2), self.ground_Y)
+        self.First_ground_3.draw(self.ground_X + (self.scroll_Y * 4), self.ground_Y)
+        self.First_ground_4.draw(self.ground_X + (self.scroll_Y * 6), self.ground_Y)
+        self.First_ground_5.draw(self.ground_X + (self.scroll_Y * 8), self.ground_Y)
+        self.First_ground_6.draw(self.ground_X + (self.scroll_Y * 10), self.ground_Y)
 
 
 class Cookie:
@@ -77,6 +92,7 @@ class Cookie:
         self.gravityY = 0
 
     def gravity(self):
+        global grass
         if (self.Y - 45 - self.gravityY) > 195:
             self.gravityY += 4
             self.Y -= self.gravityY
@@ -87,7 +103,7 @@ class Cookie:
     def update(self):
         self.gravity()
         if self.state == "Run":
-            self.frame = (self.frame + 1) % 3
+            self.frame = (self.frame + 1) % 6
         elif self.state == "Jump" and self.state == "Slide":
             self.frame = 0
         elif self.state == "Jump" and self.Y <= 250:

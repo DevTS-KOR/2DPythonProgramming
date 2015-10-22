@@ -22,12 +22,17 @@ class Third_Background:
     def __init__(self):
         self.X = 400
         self.Y = 400
+        self.Speed = 5
+        self.frame = 0
         self.image = load_image('Image\\Third_Background.png')
         self.image2 = load_image('Image\\Third_Background2.png')
 
 
     def update(self):
-        self.X = self.X + 5
+        self.X = self.X + self.Speed
+        self.frame = self.frame + 1
+        if self.frame % 10 == 0:
+            self.Speed += 0.1
         if self.X == 800:
             self.X = 400
 
@@ -40,6 +45,8 @@ class Third_ground:
         self.ground_X = 400
         self.ground_Y = 400
         self.scroll_X = 400
+        self.Speed = 15
+        self.frame = 0
         self.First_ground_1 = load_image('Image\\Third_ground_1.png')
         self.First_ground_2 = load_image('Image\\Third_ground_2.png')
         self.First_ground_3 = load_image('Image\\Third_ground_3.png')
@@ -48,7 +55,10 @@ class Third_ground:
         self.First_ground_6 = load_image('Image\\Third_ground_6.png')
 
     def update(self):
-        self.ground_X = self.ground_X + 15
+        self.ground_X = self.ground_X + self.Speed
+        self.frame = self.frame + 1
+        if self.frame % 10 == 0:
+            self.Speed += 0.1
         if self.ground_X >= (self.scroll_X * (12)) + 5:
             self.ground_X = 400
 
@@ -84,7 +94,7 @@ class Cookie:
     def update(self):
         self.gravity()
         if self.state == "Run":
-            self.frame = (self.frame + 1) % 3
+            self.frame = (self.frame + 1) % 6
         elif self.state == "Jump" and self.state == "Slide":
             self.frame = 0
         elif self.state == "Jump" and self.Y >= 550:
