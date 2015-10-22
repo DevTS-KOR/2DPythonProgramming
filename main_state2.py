@@ -34,8 +34,8 @@ class Second_Background:
         self.frame = self.frame + 1
         if self.frame % 10 == 0:
             self.Speed += 0.1
-        if self.Y == -400:
-            self.Y = 400
+        if self.Y <= -400 - self.Speed:
+            self.Y = 395 - self.Speed
 
     def draw(self):
         self.image.draw(self.X, self.Y)
@@ -43,8 +43,9 @@ class Second_Background:
 
 class Second_ground:
     def __init__(self):
+        self.First = 400
         self.ground_X = 400
-        self.ground_Y = 400
+        self.ground_Y = 1200
         self.scroll_Y = 400
         self.Speed = 15
         self.frame = 0
@@ -56,20 +57,23 @@ class Second_ground:
         self.First_ground_6 = load_image('Image\\Second_ground_6.png')
 
     def update(self):
+        self.First = self.First - self.Speed
         self.ground_Y = self.ground_Y - self.Speed
         self.frame = self.frame + 1
         if self.frame % 10 == 0:
             self.Speed += 0.1
-        if self.ground_Y == (self.scroll_Y * (-10)) + 5:
-            self.ground_Y = 400
+        if self.First <= -800 - self.Speed:
+            self.First = 3985 - self.Speed
+        if self.ground_Y <= -3600 - self.Speed:
+            self.ground_Y = 1185 - self.Speed
 
     def draw(self):
-        self.First_ground_1.draw(self.ground_X, self.ground_Y)
-        self.First_ground_2.draw(self.ground_X, self.ground_Y + (self.scroll_Y * 2))
-        self.First_ground_3.draw(self.ground_X, self.ground_Y + (self.scroll_Y * 4))
-        self.First_ground_4.draw(self.ground_X, self.ground_Y + (self.scroll_Y * 6))
-        self.First_ground_5.draw(self.ground_X, self.ground_Y + (self.scroll_Y * 8))
-        self.First_ground_6.draw(self.ground_X, self.ground_Y + (self.scroll_Y * 10))
+        self.First_ground_1.draw(self.ground_X, self.First)
+        self.First_ground_2.draw(self.ground_X, self.ground_Y)
+        self.First_ground_3.draw(self.ground_X, self.ground_Y + (self.scroll_Y * 2))
+        self.First_ground_4.draw(self.ground_X, self.ground_Y + (self.scroll_Y * 4))
+        self.First_ground_5.draw(self.ground_X, self.ground_Y + (self.scroll_Y * 6))
+        self.First_ground_6.draw(self.ground_X, self.ground_Y + (self.scroll_Y * 8))
 
 
 class Cookie:
