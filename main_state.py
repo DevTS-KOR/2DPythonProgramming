@@ -6,6 +6,7 @@ from pico2d import *
 from Player import *
 from Background import *
 from Ground import *
+from Hurdle import *
 
 import game_framework
 import title_state
@@ -18,19 +19,21 @@ font = None
 player = None
 background = None
 ground = None
+hurdle = None
 
 def enter():
-    global player, background, ground
+    global player, background, ground, hurdle
     player = Player()
     background = Background()
     ground = Ground()
-
+    hurdle = Hurdle()
 
 def exit():
-    global player, background, ground
+    global player, background, ground, hurdle
     del(player)
     del(background)
     del(ground)
+    del(hurdle)
 
 def pause():
     pass
@@ -57,10 +60,11 @@ def handle_events():
 
 
 def update():
-    global player, background, ground
+    global player, background, ground, hurdle
     background.update()
     ground.update()
     player.update()
+    hurdle.update()
 
 
 def draw():
@@ -69,6 +73,7 @@ def draw():
     clear_canvas()
     background.draw()
     ground.draw()
+    hurdle.draw()
     player.draw()
     update_canvas()
     delay(0.03)

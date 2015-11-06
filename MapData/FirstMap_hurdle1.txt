@@ -1,0 +1,14 @@
+{
+	"Tiffany" : {"StartState":"STAND", "x":500, "y":500}
+	
+}
+
+
+
+
+
+
+
+
+
+
