@@ -12,21 +12,28 @@ import game_framework
 import title_state
 #import Player
 
-
 name = "MainState"
 
 font = None
 player = None
 background = None
 ground = None
-hurdle = None
+hurdle = []
 
 def enter():
-    global player, background, ground, hurdle
+    global player, background, ground, hurdle, hurdle_data
     player = Player()
     background = Background()
     ground = Ground()
-    hurdle = Hurdle()
+    #for i in range(2):          # 장애물 종류
+    #    for j in range(3):      # 물체 개수
+    #        hurdle.append(Hurdle(i, j))
+
+    for i in range(len_data['PORK']['Len']) :
+        hurdle.append(Hurdle(len_data['PORK']['num'], i))
+    for i in range(len_data['THORN']['Len']):
+        hurdle.append(Hurdle(len_data['THORN']['num'], i))
+
 
 def exit():
     global player, background, ground, hurdle
@@ -64,7 +71,8 @@ def update():
     background.update()
     ground.update()
     player.update()
-    hurdle.update()
+    for i in hurdle:
+        i.update()
 
 
 def draw():
@@ -73,7 +81,9 @@ def draw():
     clear_canvas()
     background.draw()
     ground.draw()
-    hurdle.draw()
+    for i in hurdle:
+        i.draw()
+
     player.draw()
     update_canvas()
     delay(0.03)

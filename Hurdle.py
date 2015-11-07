@@ -5,8 +5,19 @@ import json
 import os
 import title_state
 
+hurdle_data_file = open('MapData\\FirstMap_hurdle1.txt', 'r')
+hurdle_data = json.load(hurdle_data_file)
+hurdle_data_file.close()
+
+hurdle_len_file = open('MapData\\TypeOfHurdle.txt', 'r')
+len_data = json.load(hurdle_len_file)
+hurdle_len_file.close()
+
+
 class Hurdle:
-    Image_init = None
+    global hurdle_data
+
+    #Image_init = None
     STAND = 0
 
     def hurdle_move(self):
@@ -15,36 +26,40 @@ class Hurdle:
     hurdle_state = {
         STAND: hurdle_move
     }
-    def __init__(self):
-        self.x = 0
-        self.y = 0
+    def __init__(self, HurdleType, num):
+        self.x = hurdle_data[HurdleType][num * 2]
+        self.y = hurdle_data[HurdleType][num * 2 + 1]
         self.speed = 10
+        self.name = 'noname'
+        self.image = None
 
-        if Hurdle.Image_init == None:
-            self.fork = load_image('Image\\Stage1_Fork.png')
+        #if Hurdle.Image_init == None:
+        if HurdleType == len_data['PORK']['num'] :
+            self.image = load_image(len_data['PORK']['dir'])
+        elif HurdleType == len_data['THORN']['num']:
+            self.image = load_image(len_data['THORN']['dir'])
 
-        self.create()
+
+        #self.create(num)
         #self.state = self.STAND
 
 
-    def create(self):
+    def create(self, num):
 
-        create_hurdle = {
-            "STAND" : self.STAND
-        }
+        #create_hurdle = {
+        #    "STAND" : self.STAND
+        #}
 
-        hurdle_data_file = open('MapData\\FirstMap_hurdle1.txt', 'r')
-        hurdle_data = json.load(hurdle_data_file)
-        hurdle_data_file.close()
+
 
         hurdle = []
-        for name in hurdle_data:
+        for i in range(2):
             #player = Boy()
 
-            self.name = name
-            self.x = hurdle_data[name]['x']
-            self.y = hurdle_data[name]['y']
-            self.state = create_hurdle[hurdle_data[name]['StartState']]
+            self.name = "택수"
+            self.x = hurdle_data[i]['x']
+            self.y = hurdle_data[i]['y']
+            #self.state = create_hurdle[hurdle_data[name]['StartState']]
 
             hurdle.append(self)
 
@@ -60,5 +75,4 @@ class Hurdle:
     def draw(self):
 
         #self.create()
-
-        self.fork.draw(self.x, self.y)
+        self.image.draw(self.x, self.y)
