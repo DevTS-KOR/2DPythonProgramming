@@ -19,9 +19,10 @@ player = None
 background = None
 ground = None
 hurdle = []
+hurdle2 = []
 
 def enter():
-    global player, background, ground, hurdle, hurdle_data
+    global player, background, ground, hurdle, hurdle2
     player = Player()
     background = Background()
     ground = Ground()
@@ -34,13 +35,17 @@ def enter():
     for i in range(len_data['THORN']['Len']):
         hurdle.append(Hurdle(len_data['THORN']['num'], i))
 
+    for i in range(len_data2['PORK']['Len']) :
+        hurdle2.append(Hurdle2(len_data2['PORK']['num'], i))
+
 
 def exit():
-    global player, background, ground, hurdle
+    global player, background, ground, hurdle, hurdle2
     del(player)
     del(background)
     del(ground)
     del(hurdle)
+    del(hurdle2)
 
 def pause():
     pass
@@ -67,21 +72,25 @@ def handle_events():
 
 
 def update():
-    global player, background, ground, hurdle
+    global player, background, ground, hurdle, hurdle2
     background.update()
     ground.update()
     player.update()
     for i in hurdle:
         i.update()
+    for i in hurdle2:
+        i.update()
 
 
 def draw():
-    global player, background, hurdle
+    global player, background, hurdle, hurdle2
     #뒤부터 출력순서를 정한다.
     clear_canvas()
     background.draw()
     ground.draw()
     for i in hurdle:
+        i.draw()
+    for i in hurdle2:
         i.draw()
 
     player.draw()
