@@ -68,7 +68,7 @@ def update():
 
 
 def draw():
-    global player, background
+    global player, background, hurdle
     #뒤부터 출력순서를 정한다.
     clear_canvas()
     background.draw()
