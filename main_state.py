@@ -20,9 +20,12 @@ background = None
 ground = None
 hurdle = []
 hurdle2 = []
+current_time = 0.0
+
 
 def enter():
     global player, background, ground, hurdle, hurdle2
+    #if title_state.time == True:
     player = Player()
     background = Background()
     ground = Ground()
@@ -54,6 +57,14 @@ def pause():
 def resume():
     pass
 
+def get_frame_time():
+
+    global current_time
+
+    frame_time = get_time() - current_time
+    current_time += frame_time
+    return frame_time
+
 
 def handle_events():
     global player
@@ -73,7 +84,9 @@ def handle_events():
 
 def update():
     global player, background, ground, hurdle, hurdle2
-    background.update()
+
+    frame_time = get_frame_time()
+    background.update(frame_time)
     ground.update()
     player.update()
     for i in hurdle:
@@ -87,7 +100,10 @@ def draw():
     #뒤부터 출력순서를 정한다.
     clear_canvas()
     background.draw()
-    ground.draw()
+
+    if background.frame <= 1:
+        ground.draw()
+
     for i in hurdle:
         i.draw()
     for i in hurdle2:
