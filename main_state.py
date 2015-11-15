@@ -38,8 +38,8 @@ def enter():
     for i in range(len_data['THORN']['Len']):
         hurdle.append(Hurdle(len_data['THORN']['num'], i))
 
-    for i in range(len_data2['PORK']['Len']) :
-        hurdle2.append(Hurdle2(len_data2['PORK']['num'], i))
+    #for i in range(len_data2['PORK']['Len']) :
+        #hurdle2.append(Hurdle2(len_data2['PORK']['num'], i))
 
 
 def exit():
@@ -87,13 +87,14 @@ def update():
 
     frame_time = get_frame_time()
     background.update(frame_time)
-    ground.update()
-    player.update()
+    ground.update(frame_time)
+    player.update(frame_time)
     for i in hurdle:
-        i.update()
-    for i in hurdle2:
-        i.update()
+        i.update(frame_time)
+    #for i in hurdle2:
+        #i.update()
 
+    #delay(0.03)
 
 def draw():
     global player, background, hurdle, hurdle2
@@ -111,7 +112,7 @@ def draw():
 
     player.draw()
     update_canvas()
-    delay(0.03)
+    #delay(0.03)
 
 
 

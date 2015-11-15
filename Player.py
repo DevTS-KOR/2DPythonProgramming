@@ -1,18 +1,19 @@
 from pico2d import *
 
 import game_framework
-import random
-import json
-import os
-import title_state
+
 
 class Player:
     Image_init = None
+    TIME_PER_ACTION = 0.2
+    ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
+    FRAMES_PER_ACTION = 6
 
     def __init__(self):
         self.x = 150
         self.y = 240
-        self.frame = 0
+        self.frame = 0.0
+        self.total_frames = 0.0
         self.state = "Run"
 
         if Player.Image_init == None:
@@ -25,7 +26,9 @@ class Player:
         self.jump = 0
         self.jump_gravity = 0
 
-    def update(self):
+    def update(self, frame_time):
+        self.total_frames += Player.FRAMES_PER_ACTION * Player.ACTION_PER_TIME * frame_time
+        self.frame = int(self.total_frames) % 6
         self.gravity()
 
         if self.state == "Run":
@@ -41,8 +44,9 @@ class Player:
 
     def gravity(self):
         if (self.y - 45 - self.jump_gravity) > 195:
-            self.jump_gravity += 4
-            self.y -= self.jump_gravity
+            self.jump_gravity += 2
+            self.y -= self.jump_gravity / 2
+            #delay(0.03)
         else:
             self.y = 240
             self.jump_gravity = 0
@@ -57,6 +61,7 @@ class Player:
                 self.jump_image_first.draw(self.x, self.y)
             elif self.jump % 2 == 0:
                 self.jump_image_second.draw(self.x, self.y)
+
 
 
     def handle_events(self, event):

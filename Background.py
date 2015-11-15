@@ -67,7 +67,6 @@ class Background:
             self.Count += 1
             self.first_x = 1190
 
-        print(self.Count)
         if self.Count >= 3:
             self.first_x = 400
             self.first_y = 400
@@ -110,6 +109,7 @@ class Background:
     def draw(self):
         if self.Count >= 3:
            self.background_rotate.clip_draw(self.frame * 800, 0, 800, 800, self.first_x, self.first_y)
+           delay(0.05)
         else:
             self.background_first.draw(self.first_x, self.first_y)
             self.background_second.draw(self.second_x, self.second_y)

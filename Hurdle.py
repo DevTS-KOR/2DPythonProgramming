@@ -27,8 +27,8 @@ hurdle_len_file2.close()
 
 class Hurdle:
     global hurdle_data
-    PIXEL_PER_METER = (10.0 / 0.3)                  #10 pixel 30 cm
-    RUN_SPEED_KMPH = 20.0
+    PIXEL_PER_METER = (10.0 / 0.08)                  #10 pixel 30 cm
+    RUN_SPEED_KMPH = 10.0
     RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
     RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
     RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
@@ -36,8 +36,14 @@ class Hurdle:
     #Image_init = None
     STAND = 0
 
-    def hurdle_move(self):
-        self.x -= self.speed
+    def hurdle_move(self, frame_time):
+
+        if Hurdle.RUN_SPEED_PPS * frame_time > 13:
+            self.distance = 12
+        else:
+            self.distance = Hurdle.RUN_SPEED_PPS * frame_time
+
+            self.x -= self.distance
 
     hurdle_state = {
         STAND: hurdle_move
@@ -46,6 +52,7 @@ class Hurdle:
         self.x = hurdle_data[HurdleType][num * 2]
         self.y = hurdle_data[HurdleType][num * 2 + 1]
         self.speed = 10
+        self.distance = 0
         self.name = 'noname'
         self.image = None
 
@@ -66,8 +73,10 @@ class Hurdle:
         return hurdle
 
 
-    def update(self):
-        self.hurdle_move()
+    def update(self, frame_time):
+        #print(self.x)
+
+        self.hurdle_move(frame_time)
 
     def draw(self):
         self.image.draw(self.x, self.y)
@@ -113,7 +122,8 @@ class Hurdle2:
 
 
     def update(self):
-        self.hurdle_move()
+        pass
+        #self.hurdle_move()
 
     def draw(self):
         self.image.draw(self.x, self.y)
