@@ -23,7 +23,7 @@ hurdle_len_file2 = open('MapData\\TypeOfHurdle2.txt', 'r')
 len_data2 = json.load(hurdle_len_file2)
 hurdle_len_file2.close()
 
-
+Hurdle_Start = False
 
 class Hurdle:
     global hurdle_data
@@ -73,13 +73,18 @@ class Hurdle:
         return hurdle
 
 
-    def update(self, frame_time):
+    def update(self, frame_time, Count):
+        global Hurdle_Start
         #print(self.x)
+        if Count >= 1:
+            Hurdle_Start = True
 
-        self.hurdle_move(frame_time)
+        if Hurdle_Start == True:
+            self.hurdle_move(frame_time)
 
     def draw(self):
-        self.image.draw(self.x, self.y)
+        if Hurdle_Start == True:
+            self.image.draw(self.x, self.y)
 
 
 class Hurdle2:

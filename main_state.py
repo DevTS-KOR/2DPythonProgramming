@@ -90,9 +90,9 @@ def update():
     ground.update(frame_time)
     player.update(frame_time)
     for i in hurdle:
-        i.update(frame_time)
-    #for i in hurdle2:
-        #i.update()
+        i.update(frame_time, background.Count)
+    for i in hurdle2:
+        i.update(frame_time, background.Count)
 
     #delay(0.03)
 

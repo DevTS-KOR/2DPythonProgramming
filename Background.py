@@ -67,7 +67,7 @@ class Background:
             self.Count += 1
             self.first_x = 1190
 
-        if self.Count >= 3:
+        if self.Count >= 5:
             self.first_x = 400
             self.first_y = 400
 
@@ -78,7 +78,7 @@ class Background:
                 #delay(0.1)
 
 
-
+        print(self.Count)
                 #game_framework.change_state(title_state)
 
         '''
@@ -107,7 +107,7 @@ class Background:
 
 
     def draw(self):
-        if self.Count >= 3:
+        if self.Count >= 5:
            self.background_rotate.clip_draw(self.frame * 800, 0, 800, 800, self.first_x, self.first_y)
            delay(0.05)
         else:
