@@ -39,14 +39,31 @@ class Player:
             self.state = "Run"
 
 
+    def get_bb(self):
+        if self.state == "Run":
+            return self.x - 20, self. y - 35, self.x + 20, self.y + 43
+        elif self.state == "Slide":
+            return self.x - 20, self. y - 35, self.x + 20, self.y - 15
+        elif self.state == "Jump":
+            return self.x - 20, self. y - 35, self.x + 20, self.y + 43
 
+        '''if self.state == "Run":
+            return self.x - 32, self. y - 43, self.x + 32, self.y + 43
+        elif self.state == "Slide":
+            return self.x - 32, self. y - 43, self.x + 32, self.y
+        elif self.state == "Jump":
+            return self.x - 32, self. y - 43, self.x + 32, self.y + 43'''
+
+        return self.x - 32, self. y - 43, self.x + 32, self.y + 43
+
+    def draw_bb(self):
+        draw_rectangle(*self.get_bb())
 
 
     def gravity(self):
         if (self.y - 45 - self.jump_gravity) > 195:
             self.jump_gravity += 2
             self.y -= self.jump_gravity / 2
-            #delay(0.03)
         else:
             self.y = 240
             self.jump_gravity = 0
@@ -80,8 +97,109 @@ class Player:
 
                     if (self.y - 45) == 195:
                         self.jump_gravity = -35
-                #elif event.key == SDLK_2:
-                    #game_framework.change_state(main_state2)
+
+
+            elif event.type == SDL_KEYUP:
+                if event.key == SDLK_DOWN:
+                    self.state = "Run"
+
+
+class Player_second:
+    Image_init = None
+    TIME_PER_ACTION = 0.2
+    ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
+    FRAMES_PER_ACTION = 6
+
+    def __init__(self):
+        self.x = 560
+        self.y = 240
+        self.frame = 0.0
+        self.total_frames = 0.0
+        self.state = "Run"
+
+        if Player.Image_init == None:
+            self.run_cookie = load_image('Image\\cookie_run2.png')
+            self.slide_image = load_image('Image\\cookie_run_slide2.png')
+            self.jump_image_first = load_image('Image\\cookie_run_jump_2.png')
+            self.jump_image_second = load_image('Image\\cookie_run_jump2_2.png')
+
+        self.dir = "Right"
+        self.jump = 0
+        self.jump_gravity = 0
+
+    def update(self, frame_time):
+        self.total_frames += Player.FRAMES_PER_ACTION * Player.ACTION_PER_TIME * frame_time
+        self.frame = int(self.total_frames) % 6
+        self.gravity()
+
+
+        if self.state == "Run":
+            self.frame = (self.frame + 1) % 6
+        elif self.state == "Jump" and self.state == "Slide":
+            self.frame = 0
+        elif self.state == "Jump" and self.x >= 550:
+            self.state = "Run"
+
+    def get_bb(self):
+        if self.state == "Run":
+            return self.x - 35, self. y - 20, self.x + 43, self.y + 20
+        elif self.state == "Slide":
+            return self.x + 35, self. y - 20, self.x + 15, self.y + 20
+        elif self.state == "Jump":
+            return self.x - 35, self. y - 20, self.x + 43, self.y + 20
+
+        '''if self.state == "Run":
+            return self.x - 32, self. y - 43, self.x + 32, self.y + 43
+        elif self.state == "Slide":
+            return self.x - 32, self. y - 43, self.x + 32, self.y
+        elif self.state == "Jump":
+            return self.x - 32, self. y - 43, self.x + 32, self.y + 43'''
+
+        return self.x - 32, self. y - 43, self.x + 32, self.y + 43
+
+    def draw_bb(self):
+        draw_rectangle(*self.get_bb())
+
+
+
+    def gravity(self):
+        if (self.x - 45 - self.jump_gravity) < 515:
+            self.jump_gravity -= 2
+            self.x -= self.jump_gravity / 2
+        else:
+            self.x = 560
+            self.jump_gravity = 0
+
+    def draw(self):
+        if self.state == "Run":
+            self.run_cookie.clip_draw(0, self.frame * 75, 87, 75, self.x, self.y)
+        elif self.state == "Slide":
+            self.slide_image.draw(self.x + 17, self.y)
+        elif self.state == "Jump":
+            if self.jump % 2 == 1:
+                self.jump_image_first.draw(self.x, self.y)
+            elif self.jump % 2 == 0:
+                self.jump_image_second.draw(self.x, self.y)
+
+
+
+    def handle_events(self, event):
+            events = get_events()
+
+            if event.type == SDL_QUIT:
+                game_framework.quit()
+
+            elif event.type == SDL_KEYDOWN:
+                if event.key == SDLK_DOWN:
+                    self.state = "Slide"
+                elif event.key == SDLK_UP:
+                    self.state = "Jump"
+                    self.jump += 1
+
+
+                    if (self.x - 45) == 515:
+                        self.jump_gravity = +35
+
 
             elif event.type == SDL_KEYUP:
                 if event.key == SDLK_DOWN:

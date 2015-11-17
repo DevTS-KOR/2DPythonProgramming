@@ -1,4 +1,0 @@
-{
-  "PORK" : {"Len":2, "num" : 0, "dir": "Image\\Stage1_Fork.png" },
-  "THORN" : {"Len":1, "num" : 1, "dir": "Image\\Stage1_thorn.png"}
-}

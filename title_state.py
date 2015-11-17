@@ -1,6 +1,5 @@
 import game_framework
 import lobby
-import main_state
 from pico2d import *
 
 

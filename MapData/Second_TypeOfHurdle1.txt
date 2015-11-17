@@ -1,0 +1,7 @@
+{
+  "Stage2_Spear" : {"Len": 2, "num" : 0, "dir": "Image\\Stage2_Spear.png", "width": 448, "height" : 50 },
+  "Stage2_thorn2" : {"Len": 4, "num" : 1, "dir": "Image\\Stage2_thorn2.png", "width": 61, "height" : 46 },
+  "Stage2_thorn3" : {"Len": 1, "num" : 2, "dir": "Image\\Stage2_thorn3.png", "width": 56, "height" : 64 }
+}
+
+

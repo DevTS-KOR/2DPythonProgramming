@@ -26,14 +26,22 @@ wafer_select = None
 wafer_buy_click = None
 wafer_select_click = None
 
+chestnut_check = None
+dog_check = None
+wafer_check = None
+
 dog_pet_buy = False
 chestnut_pet_buy = False
 wafer_pet_buy = False
 
+chestnut_select_check = False
+dog_select_check = False
+wafer_select_check = False
+
 pet = "None"
 
 def enter():
-    global image, exit, chestnut_buy, chestnut_select, chestnut_buy_click, chestnut_select_click
+    global image, exit, chestnut_buy, chestnut_select, chestnut_buy_click, chestnut_select_click, dog_pet_buy, dog_check, wafer_check, chestnut_check
     global dog_buy, dog_select, dog_buy_click, dog_select_click
     global wafer_buy, wafer_select, wafer_buy_click, wafer_select_click
     image = load_image('Image\\Shop\\shop_main.png')
@@ -53,8 +61,14 @@ def enter():
     wafer_select = load_image('Image\\Shop\\select_button.png')
     wafer_select_click = load_image('Image\\Shop\\select_button_click.png')
 
+    chestnut_check = load_image('Image\\Shop\\check_button_click.png')
+    dog_check = load_image('Image\\Shop\\check_button_click.png')
+    wafer_check = load_image('Image\\Shop\\check_button_click.png')
+
 def exit():
-    global image
+    global image, exit, chestnut_buy, chestnut_select, chestnut_buy_click, chestnut_select_click
+    global dog_buy, dog_select, dog_buy_click, dog_select_click, wafer_buy, wafer_select, wafer_buy_click, wafer_select_click
+    global chestnut_check, dog_check, wafer_check
     del(image)
     del(exit)
     del(chestnut_buy)
@@ -69,11 +83,14 @@ def exit():
     del(wafer_select)
     del(wafer_buy_click)
     del(wafer_select_click)
-
+    del(chestnut_check)
+    del(dog_check)
+    del(wafer_check)
 
 
 def handle_events():
     global time, chestnut_pet_buy, x, y, dog_pet_buy, wafer_pet_buy
+    global chestnut_select_check, dog_select_check, wafer_select_check
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -87,21 +104,34 @@ def handle_events():
             if x > 685 and x < 735 and y > 515 and y < 565:
                 game_framework.push_state(lobby)
 
-            if x > 104 and x < 196 and y > 204 and y < 236:
+            if x > 104 and x < 196 and y > 204 and y < 236 and chestnut_pet_buy == True:
+                chestnut_select_check = True
+                dog_select_check = False
+                wafer_select_check = False
+
+            elif x > 344 and x < 436 and y > 204 and y < 236 and dog_pet_buy == True:
+                chestnut_select_check = False
+                dog_select_check = True
+                wafer_select_check = False
+
+            elif x > 584 and x < 676 and y > 204 and y < 236 and wafer_pet_buy == True:
+                chestnut_select_check = False
+                dog_select_check = False
+                wafer_select_check = True
+
+            elif x > 104 and x < 196 and y > 204 and y < 236:
                 chestnut_pet_buy = True
 
-            if x > 344 and x < 436 and y > 204 and y < 236:
+            elif x > 344 and x < 436 and y > 204 and y < 236:
                 dog_pet_buy = True
 
-            if x > 584 and x < 676 and y > 204 and y < 236:
+            elif x > 584 and x < 676 and y > 204 and y < 236:
                 wafer_pet_buy = True
+
 
         else:
             if(event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
                 game_framework.quit()
-            #elif(event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
-                #time = True
-                #game_framework.change_state(lobby)
 
 
 def draw():
@@ -118,8 +148,11 @@ def draw():
     if x > 104 and x < 196 and y > 204 and y < 236 and chestnut_pet_buy == False:
         chestnut_buy_click.draw(150, 220)
 
-    elif x > 104 and x < 196 and y > 204 and y < 236 and chestnut_pet_buy == True:
+    if x > 104 and x < 196 and y > 204 and y < 236 and chestnut_pet_buy == True and chestnut_select_check == False:
         chestnut_select_click.draw(150, 220)
+
+    elif chestnut_pet_buy == True and chestnut_select_check == True:
+        chestnut_check.draw(150, 220)
         pet = "chestnut"
     #####################################################################
     #92 32 / 46 16
@@ -132,8 +165,11 @@ def draw():
     if x > 344 and x < 436 and y > 204 and y < 236 and dog_pet_buy == False:
         dog_buy_click.draw(390, 220)
 
-    elif x > 344 and x < 436 and y > 204 and y < 236 and dog_pet_buy == True:
+    if x > 344 and x < 436 and y > 204 and y < 236 and dog_pet_buy == True and dog_select_check == False:
         dog_select_click.draw(390, 220)
+
+    elif dog_pet_buy == True and dog_select_check == True:
+        dog_check.draw(390, 220)
         pet = "dog"
     #####################################################################
     #92 32 / 46 16
@@ -146,8 +182,11 @@ def draw():
     if x > 584 and x < 676 and y > 204 and y < 236 and wafer_pet_buy == False:
         wafer_buy_click.draw(630, 220)
 
-    elif x > 584 and x < 676 and y > 204 and y < 236 and wafer_pet_buy == True:
+    if x > 584 and x < 676 and y > 204 and y < 236 and wafer_pet_buy == True and wafer_select_check == False:
         wafer_select_click.draw(630, 220)
+
+    elif wafer_pet_buy == True and wafer_select_check == True:
+        wafer_check.draw(630, 220)
         pet = "wafer"
     update_canvas()
 
