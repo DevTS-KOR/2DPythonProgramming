@@ -3,6 +3,7 @@ import json
 import os
 
 from pico2d import *
+from math import *
 from Player import *
 from Background import *
 from Ground import *
@@ -21,6 +22,7 @@ background = None
 ground = None
 hurdle = []
 current_time = 0.0
+angle = 100
 
 
 def enter():
@@ -40,6 +42,10 @@ def enter():
         hurdle.append(Hurdle(len_data['Stage1_Fork2']['num'], i))
     for i in range(len_data['Stage1_thorn']['Len']):
         hurdle.append(Hurdle(len_data['Stage1_thorn']['num'], i))
+    for i in range(len_data['big_jelly']['Len']):
+        hurdle.append(Hurdle(len_data['big_jelly']['num'], i))
+    for i in range(len_data['item_jelly']['Len']):
+        hurdle.append(Hurdle(len_data['item_jelly']['num'], i))
 
 ##############################################################################
 
@@ -49,6 +55,8 @@ def enter():
         hurdle.append(Hurdle2(len_data2['Stage1_thorn4']['num'], i))
     for i in range(len_data2['Stage1_thorn5']['Len']):
         hurdle.append(Hurdle2(len_data2['Stage1_thorn5']['num'], i))
+    for i in range(len_data2['item_jelly']['Len']):
+        hurdle.append(Hurdle2(len_data2['item_jelly']['num'], i))
 
 ################################################################################
 
@@ -146,18 +154,56 @@ def collide(a, b):
 
 
 def update():
-    global player, background, ground, hurdle, pet
+    global player, background, ground, hurdle, pet, angle, current_time
 
 
     frame_time = get_frame_time()
-    background.update(frame_time)
-    ground.update(frame_time)
-    player.update(frame_time)
+    background.update(frame_time, player.state)
+    ground.update(frame_time, player.state)
+    player.update(frame_time, player.score)
     pet.update(frame_time)
+
     for i in hurdle:
         i.update(frame_time, background.Count_copy)
-        if collide(player, i):
-            print("충돌")
+        if collide(player, i) and player.big == False:
+            if i.arr['dir'] == 'Image\\big_jelly.png':
+                if player.state == "Slide":
+                    player.state = "Slide_Big"
+
+                else:
+                    player.state = "Big"
+                player.big = True
+                player.big_time = player.total_frames
+            #elif player.state == "Big":
+                #print(frame_time)
+            elif i.arr['dir'] == 'Image\\item_jelly.png':
+                player.score += 1
+                hurdle.remove(i)
+            else:
+                #print(i.arr['dir'])         #    Image\Stage1_Fork.png
+                player.state = "Collid"
+                for i in hurdle:
+                    i.state = "Collid"
+        elif  player.state == "Run" or player.state == "Slide" or player.state == "Jump":
+            for i in hurdle:
+                i.state = "None"
+        elif collide(player, i) and player.big == True:
+                i.y += 800
+                if i.arr['dir'] == 'Image\\item_jelly.png':
+                    player.score += 1
+                    hurdle.remove(i)
+                #i.x -= cos(angle * 3.14 / 180) * 100
+                #i.y += sin(angle * 3.14 / 180) * 100
+                #angle += 50
+            #angle += 50
+        #else:
+            #player.state = "Run"
+            #i.state = "None"
+            #player.state = "Run"
+            #background.distance = 0
+            #ground.distance = 0
+
+
 
     #delay(0.03)
 
@@ -177,7 +223,7 @@ def draw():
     #hurdle.draw_bb()
     player.draw()
     player.draw_bb()
-    pet.draw(player.x, player.y)
+    pet.draw(player.x, player.y, player.state)
     update_canvas()
     #delay(0.03)
 

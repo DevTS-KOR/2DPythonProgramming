@@ -1,5 +1,6 @@
 from pico2d import *
 
+
 class Ground:
     Image_init = None
     PIXEL_PER_METER = (10.0 / 0.08)                  #10 pixel 30 cm
@@ -16,20 +17,34 @@ class Ground:
         self.speed = 10
         self.distance = 0
         self.frame = 0
+        self.sum = 0
         if Ground.Image_init == None:
             self.ground_first = load_image('Image\\First_ground.png')
             self.ground_second = load_image('Image\\First_ground.png')
 
 
-    def update(self, frame_time):
+    def update(self, frame_time, state):
 
         if Ground.RUN_SPEED_PPS * frame_time > 13:
             self.distance = 12
         else:
             self.distance = Ground.RUN_SPEED_PPS * frame_time
 
-        self.first_x -= self.distance
-        self.second_x -= self.distance
+            #self.distance += frame_time
+
+
+        if state == "Collid":
+            self.distance = 0
+            if self.sum < 30:
+                self.first_x += 20
+                self.second_x += 20
+                self.sum += 10
+
+
+        else:
+            self.first_x -= self.distance
+            self.second_x -= self.distance
+            self.sum = 0
 
         if self.first_x <= 400:
             self.second_x = self.first_x + 800

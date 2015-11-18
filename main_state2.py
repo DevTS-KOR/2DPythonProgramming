@@ -165,7 +165,7 @@ def draw():
 
     player.draw()
     player.draw_bb()
-    pet.draw(player.x, player.y)
+    pet.draw(player.x, player.y, player.state)
     update_canvas()
     #delay(0.03)
 

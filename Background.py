@@ -1,6 +1,5 @@
 from pico2d import *
 
-
 class Background:
     Image_init = None
     PIXEL_PER_METER = (10.0 / 0.3)                  #10 pixel 30 cm
@@ -14,6 +13,7 @@ class Background:
         self.first_y = 400
         self.second_x = 1200
         self.second_y = 400
+        self.sum = 0
         self.distance = 0
         self.Count = 0
         self.Count_copy = 0
@@ -29,14 +29,22 @@ class Background:
         self.frame = 0
         self.speed = 5
 
-    def update(self, frame_time):
+    def update(self, frame_time, state):
         if Background.RUN_SPEED_PPS * frame_time > 7:
             self.distance = 6.5
         else:
             self.distance = Background.RUN_SPEED_PPS * frame_time
 
-        self.first_x -= self.distance
-        self.second_x -= self.distance
+        if state == "Collid":
+            self.distance = 0
+            if self.sum < 30:
+                self.first_x += 20
+                self.second_x += 20
+                self.sum += 10
+        else:
+            self.first_x -= self.distance
+            self.second_x -= self.distance
+            self.sum = 0
 
         if self.second_x < -400:
             self.sum_second_distance = 0
