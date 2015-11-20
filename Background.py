@@ -21,6 +21,7 @@ class Background:
         self.total_frames = 0.0
         self.sum_first_distance = 0.0
         self.sum_second_distance = 0.0
+
         if Background.Image_init == None:
             self.background_first = load_image('Image\\First_Background.png')
             self.background_second = load_image('Image\\First_Background.png')
@@ -28,6 +29,10 @@ class Background:
 
         self.frame = 0
         self.speed = 5
+
+    def __del__(self):
+        pass
+        #print(1)
 
     def update(self, frame_time, state):
         if Background.RUN_SPEED_PPS * frame_time > 7:
@@ -41,6 +46,7 @@ class Background:
                 self.first_x += 20
                 self.second_x += 20
                 self.sum += 10
+
         else:
             self.first_x -= self.distance
             self.second_x -= self.distance

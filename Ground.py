@@ -22,6 +22,9 @@ class Ground:
             self.ground_first = load_image('Image\\First_ground.png')
             self.ground_second = load_image('Image\\First_ground.png')
 
+    def __del__(self):
+        pass
+        #print(1)
 
     def update(self, frame_time, state):
 

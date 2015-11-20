@@ -5,7 +5,7 @@ from pico2d import *
 
 
 
-name = "TitleState"
+name = "Shop"
 image = None
 exit = None
 time = False
@@ -39,11 +39,12 @@ dog_select_check = False
 wafer_select_check = False
 
 pet = "None"
+button = None
 
 def enter():
     global image, exit, chestnut_buy, chestnut_select, chestnut_buy_click, chestnut_select_click, dog_pet_buy, dog_check, wafer_check, chestnut_check
     global dog_buy, dog_select, dog_buy_click, dog_select_click
-    global wafer_buy, wafer_select, wafer_buy_click, wafer_select_click
+    global wafer_buy, wafer_select, wafer_buy_click, wafer_select_click, button
     image = load_image('Image\\Shop\\shop_main.png')
     exit = load_image('Image\\Shop\\exit_button.png')
     chestnut_buy = load_image('Image\\Shop\\buy_button.png')
@@ -64,6 +65,13 @@ def enter():
     chestnut_check = load_image('Image\\Shop\\check_button_click.png')
     dog_check = load_image('Image\\Shop\\check_button_click.png')
     wafer_check = load_image('Image\\Shop\\check_button_click.png')
+
+    #로비 bgm 이어서
+    lobby.bgm_re = False
+
+    if button == None:
+        button = load_wav('Sound\\ui_1.wav')
+        button.set_volume(128)
 
 def exit():
     global image, exit, chestnut_buy, chestnut_select, chestnut_buy_click, chestnut_select_click
@@ -90,7 +98,7 @@ def exit():
 
 def handle_events():
     global time, chestnut_pet_buy, x, y, dog_pet_buy, wafer_pet_buy
-    global chestnut_select_check, dog_select_check, wafer_select_check
+    global chestnut_select_check, dog_select_check, wafer_select_check, button
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -101,32 +109,39 @@ def handle_events():
 
         elif event.type == SDL_MOUSEBUTTONDOWN:
             x, y = event.x, 800 - event.y
-            if x > 685 and x < 735 and y > 515 and y < 565:
-                game_framework.push_state(lobby)
-
             if x > 104 and x < 196 and y > 204 and y < 236 and chestnut_pet_buy == True:
+                button.play()
                 chestnut_select_check = True
                 dog_select_check = False
                 wafer_select_check = False
 
             elif x > 344 and x < 436 and y > 204 and y < 236 and dog_pet_buy == True:
+                button.play()
                 chestnut_select_check = False
                 dog_select_check = True
                 wafer_select_check = False
 
             elif x > 584 and x < 676 and y > 204 and y < 236 and wafer_pet_buy == True:
+                button.play()
                 chestnut_select_check = False
                 dog_select_check = False
                 wafer_select_check = True
 
             elif x > 104 and x < 196 and y > 204 and y < 236:
+                button.play()
                 chestnut_pet_buy = True
 
             elif x > 344 and x < 436 and y > 204 and y < 236:
+                button.play()
                 dog_pet_buy = True
 
             elif x > 584 and x < 676 and y > 204 and y < 236:
+                button.play()
                 wafer_pet_buy = True
+
+            elif x > 685 and x < 735 and y > 515 and y < 565:
+                button.play()
+                game_framework.push_state(lobby)
 
 
         else:
@@ -188,6 +203,71 @@ def draw():
     elif wafer_pet_buy == True and wafer_select_check == True:
         wafer_check.draw(630, 220)
         pet = "wafer"
+
+
+    if lobby.sum_score % 10 == 0:
+        lobby.zero.draw(385, 600)
+    elif lobby.sum_score % 10 == 1:
+        lobby.one.draw(385, 600)
+    elif lobby.sum_score % 10 == 2:
+        lobby.two.draw(385, 600)
+    elif lobby.sum_score % 10 == 3:
+        lobby.three.draw(385, 600)
+    elif lobby.sum_score % 10 == 4:
+        lobby.four.draw(385, 600)
+    elif lobby.sum_score % 10 == 5:
+        lobby.five.draw(385, 600)
+    elif lobby.sum_score % 10 == 6:
+        lobby.six.draw(385, 600)
+    elif lobby.sum_score % 10 == 7:
+        lobby.seven.draw(385, 600)
+    elif lobby.sum_score % 10 == 8:
+        lobby.eight.draw(385, 600)
+    elif lobby.sum_score % 10 == 9:
+        lobby.nine.draw(385, 600)
+
+    if int(lobby.sum_score / 10) % 10 == 0:
+        lobby.zero.draw(355, 600)
+    elif int(lobby.sum_score / 10) % 10 == 1:
+        lobby.one.draw(355, 600)
+    elif int(lobby.sum_score / 10) % 10 == 2:
+         lobby.two.draw(355, 600)
+    elif int(lobby.sum_score / 10) % 10 == 3:
+        lobby.three.draw(355, 600)
+    elif int(lobby.sum_score / 10) % 10 == 4:
+        lobby.four.draw(355, 600)
+    elif int(lobby.sum_score / 10) % 10 == 5:
+        lobby.five.draw(355, 600)
+    elif int(lobby.sum_score / 10) % 10 == 6:
+        lobby.six.draw(355, 600)
+    elif int(lobby.sum_score / 10) % 10 == 7:
+        lobby.seven.draw(355, 600)
+    elif int(lobby.sum_score / 10) % 10 == 8:
+        lobby.eight.draw(355, 600)
+    elif int(lobby.sum_score / 10) % 10 == 9:
+        lobby.nine.draw(355, 600)
+
+    if int(lobby.sum_score / 100) == 0:
+        lobby.zero.draw(325, 600)
+    elif int(lobby.sum_score / 100) == 1:
+        lobby.one.draw(325, 600)
+    elif int(lobby.sum_score / 100) == 2:
+        lobby.two.draw(325, 600)
+    elif int(lobby.sum_score / 100) == 3:
+        lobby.three.draw(325, 600)
+    elif int(lobby.sum_score / 100) == 4:
+        lobby.four.draw(325, 600)
+    elif int(lobby.sum_score / 100) == 5:
+        lobby.five.draw(325, 600)
+    elif int(lobby.sum_score / 100) == 6:
+        lobby.six.draw(325, 600)
+    elif int(lobby.sum_score / 100) == 7:
+        lobby.seven.draw(325, 600)
+    elif int(lobby.sum_score / 100) == 8:
+        lobby.eight.draw(325, 600)
+    elif int(lobby.sum_score / 100) == 9:
+        lobby.nine.draw(325, 600)
+
     update_canvas()
 
 

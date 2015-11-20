@@ -3,7 +3,6 @@ import json
 import os
 
 from pico2d import *
-from math import *
 from Player import *
 from Background import *
 from Ground import *
@@ -12,6 +11,7 @@ from Pet import *
 import game_framework
 import title_state
 import main_state2
+import lobby
 
 name = "MainState"
 
@@ -20,86 +20,147 @@ player = None
 pet = None
 background = None
 ground = None
-hurdle = []
+hurdle = None
 current_time = 0.0
 angle = 100
+result_count = 0
+hurdle_start = None
+gaint_sound = None
+collid_sound = None
+jelly_sound = None
+big_collid_sound = None
+hp_sound = None
+result_ok_sound = None
+x, y = 0, 0
 
 
 def enter():
-    global player, background, ground, hurdle, pet
+    global player, background, ground, hurdle, pet, hurdle_start
+    global gaint_sound, collid_sound, jelly_sound, big_collid_sound, hp_sound, result_ok_sound
     #if title_state.time == True:
+    hurdle = list()
     player = Player()
     background = Background()
     ground = Ground()
     pet = Pet()
+
+    #Hurdle.__init__()
+    ground.__init__()
+
+    Hurdle.Hurdle_Start1 = False
+    Hurdle.Hurdle_Start2 = False
+    Hurdle.Hurdle_Start3 = False
+    Hurdle.Hurdle_Start4 = False
+    Hurdle.Hurdle_Start5 = False
+
+    ######사운드 관련#####
+    if gaint_sound == None:
+        gaint_sound = load_wav('Sound\\i_giant.wav')
+        gaint_sound.set_volume(128)
+
+    if collid_sound == None:
+        collid_sound = load_wav('Sound\\collide.wav')
+        collid_sound.set_volume(64)
+
+    if jelly_sound == None:
+        jelly_sound = load_wav('Sound\\g_jelly.wav')
+        jelly_sound.set_volume(32)
+
+    if big_collid_sound == None:
+        big_collid_sound = load_wav('Sound\\big_hit.wav')
+        big_collid_sound.set_volume(128)
+
+    if hp_sound == None:
+        hp_sound = load_wav('Sound\\i_large_energy.wav')
+        hp_sound.set_volume(128)
+
+    if result_ok_sound == None:
+        result_ok_sound = load_wav('Sound\\ui_2.wav')
+        result_ok_sound.set_volume(128)
+
     #for i in range(2):          # 장애물 종류
     #    for j in range(3):      # 물체 개수
     #        hurdle.append(Hurdle(i, j))
-
-    for i in range(len_data['Stage1_Fork']['Len']):
-        hurdle.append(Hurdle(len_data['Stage1_Fork']['num'], i))
-    for i in range(len_data['Stage1_Fork2']['Len']):
-        hurdle.append(Hurdle(len_data['Stage1_Fork2']['num'], i))
-    for i in range(len_data['Stage1_thorn']['Len']):
-        hurdle.append(Hurdle(len_data['Stage1_thorn']['num'], i))
-    for i in range(len_data['big_jelly']['Len']):
-        hurdle.append(Hurdle(len_data['big_jelly']['num'], i))
-    for i in range(len_data['item_jelly']['Len']):
-        hurdle.append(Hurdle(len_data['item_jelly']['num'], i))
+    if hurdle_start == None:
+        for i in range(len_data['Stage1_Fork']['Len']):
+            hurdle.append(Hurdle(len_data['Stage1_Fork']['num'], i))
+        for i in range(len_data['Stage1_Fork2']['Len']):
+            hurdle.append(Hurdle(len_data['Stage1_Fork2']['num'], i))
+        for i in range(len_data['Stage1_thorn']['Len']):
+            hurdle.append(Hurdle(len_data['Stage1_thorn']['num'], i))
+        for i in range(len_data['big_jelly']['Len']):
+            hurdle.append(Hurdle(len_data['big_jelly']['num'], i))
+        for i in range(len_data['item_jelly']['Len']):
+            hurdle.append(Hurdle(len_data['item_jelly']['num'], i))
 
 ##############################################################################
 
-    for i in range(len_data2['Stage1_Fork']['Len']):
-        hurdle.append(Hurdle2(len_data2['Stage1_Fork']['num'], i))
-    for i in range(len_data2['Stage1_thorn4']['Len']):
-        hurdle.append(Hurdle2(len_data2['Stage1_thorn4']['num'], i))
-    for i in range(len_data2['Stage1_thorn5']['Len']):
-        hurdle.append(Hurdle2(len_data2['Stage1_thorn5']['num'], i))
-    for i in range(len_data2['item_jelly']['Len']):
-        hurdle.append(Hurdle2(len_data2['item_jelly']['num'], i))
+        for i in range(len_data2['Stage1_Fork']['Len']):
+            hurdle.append(Hurdle2(len_data2['Stage1_Fork']['num'], i))
+        for i in range(len_data2['Stage1_thorn4']['Len']):
+            hurdle.append(Hurdle2(len_data2['Stage1_thorn4']['num'], i))
+        for i in range(len_data2['Stage1_thorn5']['Len']):
+            hurdle.append(Hurdle2(len_data2['Stage1_thorn5']['num'], i))
+        for i in range(len_data2['item_jelly']['Len']):
+            hurdle.append(Hurdle2(len_data2['item_jelly']['num'], i))
 
 ################################################################################
 
-    for i in range(len_data3['Stage1_Fork']['Len']):
-        hurdle.append(Hurdle3(len_data3['Stage1_Fork']['num'], i))
-    for i in range(len_data3['Stage1_Fork2']['Len']):
-        hurdle.append(Hurdle3(len_data3['Stage1_Fork2']['num'], i))
-    for i in range(len_data3['Stage1_thorn4']['Len']):
-        hurdle.append(Hurdle3(len_data3['Stage1_thorn4']['num'], i))
+        for i in range(len_data3['Stage1_Fork']['Len']):
+            hurdle.append(Hurdle3(len_data3['Stage1_Fork']['num'], i))
+        for i in range(len_data3['Stage1_Fork2']['Len']):
+            hurdle.append(Hurdle3(len_data3['Stage1_Fork2']['num'], i))
+        for i in range(len_data3['Stage1_thorn4']['Len']):
+            hurdle.append(Hurdle3(len_data3['Stage1_thorn4']['num'], i))
+        for i in range(len_data3['item_jelly']['Len']):
+            hurdle.append(Hurdle3(len_data3['item_jelly']['num'], i))
 
 
 ################################################################################
 
-    for i in range(len_data4['Stage1_Fork']['Len']):
-        hurdle.append(Hurdle4(len_data4['Stage1_Fork']['num'], i))
-    for i in range(len_data4['Stage1_Fork2']['Len']):
-        hurdle.append(Hurdle4(len_data4['Stage1_Fork2']['num'], i))
-    for i in range(len_data4['Stage1_thorn']['Len']):
-        hurdle.append(Hurdle4(len_data4['Stage1_thorn']['num'], i))
-    for i in range(len_data4['Stage1_thorn4']['Len']):
-        hurdle.append(Hurdle4(len_data4['Stage1_thorn4']['num'], i))
-    for i in range(len_data4['Stage1_thorn5']['Len']):
-        hurdle.append(Hurdle4(len_data4['Stage1_thorn5']['num'], i))
+        for i in range(len_data4['Stage1_Fork']['Len']):
+            hurdle.append(Hurdle4(len_data4['Stage1_Fork']['num'], i))
+        for i in range(len_data4['Stage1_Fork2']['Len']):
+            hurdle.append(Hurdle4(len_data4['Stage1_Fork2']['num'], i))
+        for i in range(len_data4['Stage1_thorn']['Len']):
+            hurdle.append(Hurdle4(len_data4['Stage1_thorn']['num'], i))
+        for i in range(len_data4['Stage1_thorn4']['Len']):
+            hurdle.append(Hurdle4(len_data4['Stage1_thorn4']['num'], i))
+        for i in range(len_data4['Stage1_thorn5']['Len']):
+            hurdle.append(Hurdle4(len_data4['Stage1_thorn5']['num'], i))
+        for i in range(len_data4['item_jelly']['Len']):
+            hurdle.append(Hurdle4(len_data4['item_jelly']['num'], i))
 
 ##################################################################################
 
-    for i in range(len_data5['Stage1_Fork']['Len']):
-        hurdle.append(Hurdle5(len_data5['Stage1_Fork']['num'], i))
-    for i in range(len_data5['Stage1_Fork2']['Len']):
-        hurdle.append(Hurdle5(len_data5['Stage1_Fork2']['num'], i))
-    for i in range(len_data5['Stage1_thorn4']['Len']):
-        hurdle.append(Hurdle5(len_data5['Stage1_thorn4']['num'], i))
-    for i in range(len_data5['Stage1_thorn5']['Len']):
-        hurdle.append(Hurdle5(len_data5['Stage1_thorn5']['num'], i))
+        for i in range(len_data5['Stage1_Fork']['Len']):
+            hurdle.append(Hurdle5(len_data5['Stage1_Fork']['num'], i))
+        for i in range(len_data5['Stage1_Fork2']['Len']):
+            hurdle.append(Hurdle5(len_data5['Stage1_Fork2']['num'], i))
+        for i in range(len_data5['Stage1_thorn4']['Len']):
+            hurdle.append(Hurdle5(len_data5['Stage1_thorn4']['num'], i))
+        for i in range(len_data5['Stage1_thorn5']['Len']):
+            hurdle.append(Hurdle5(len_data5['Stage1_thorn5']['num'], i))
+        for i in range(len_data5['item_jelly']['Len']):
+            hurdle.append(Hurdle5(len_data5['item_jelly']['num'], i))
+        for i in range(len_data5['hp_jelly']['Len']):
+            hurdle.append(Hurdle5(len_data5['hp_jelly']['num'], i))
 
 
 def exit():
-    global player, background, ground, hurdle, pet
-    del(player)
+    global player, background, ground, pet, hurdle, lobby
+   # del(player)
+    lobby.score = player.score
     del(background)
     del(ground)
-    del(hurdle)
     del(pet)
+
+    for i in hurdle :
+        hurdle.remove(i)
+        del(i)
+    del(hurdle)
+
+
 
 def pause():
     pass
@@ -118,7 +179,7 @@ def get_frame_time():
 
 
 def handle_events():
-    global player, background
+    global player, background, x, y
 
     events = get_events()
 
@@ -130,6 +191,13 @@ def handle_events():
         if event.type == SDL_QUIT:
             game_framework.quit()
 
+        elif event.type == SDL_MOUSEBUTTONDOWN:
+            if player.mouse_x > 354 and player.mouse_x < 446 and player.mouse_y > 259 and player.mouse_y < 291:
+                result_ok_sound.play()
+                game_framework.change_state(lobby)
+
+
+
         else:
             if event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
                 game_framework.change_state(title_state)
@@ -139,6 +207,8 @@ def handle_events():
 
             else:
                 player.handle_events(event)
+
+
 
 
 def collide(a, b):
@@ -154,44 +224,63 @@ def collide(a, b):
 
 
 def update():
-    global player, background, ground, hurdle, pet, angle, current_time
-
+    global player, background, ground, hurdle, pet, angle, current_time, result_count
+    global gaint_sound, collid_sound, jelly_sound, hp_sound
 
     frame_time = get_frame_time()
-    background.update(frame_time, player.state)
-    ground.update(frame_time, player.state)
+    if player.state == "Dead" and result_count == 0:
+        player.dead_time = player.total_frames
+        result_count += 1
+
+    if player.hpsize < 500:
+        background.update(frame_time, player.state)
+        ground.update(frame_time, player.state)
+        pet.update(frame_time)
     player.update(frame_time, player.score)
-    pet.update(frame_time)
 
-    for i in hurdle:
-        i.update(frame_time, background.Count_copy)
-        if collide(player, i) and player.big == False:
-            if i.arr['dir'] == 'Image\\big_jelly.png':
-                if player.state == "Slide":
-                    player.state = "Slide_Big"
+    if player.hpsize < 500:
+        for i in hurdle:
+            i.update(frame_time, background.Count_copy)
+            if collide(player, i) and player.big == False:
+                if i.arr['dir'] == 'Image\\big_jelly.png':
+                    gaint_sound.play()
+                    if player.state == "Slide":
+                        player.state = "Slide_Big"
 
-                else:
-                    player.state = "Big"
-                player.big = True
-                player.big_time = player.total_frames
-            #elif player.state == "Big":
-                #print(frame_time)
-            elif i.arr['dir'] == 'Image\\item_jelly.png':
-                player.score += 1
-                hurdle.remove(i)
-            else:
-                #print(i.arr['dir'])         #    Image\Stage1_Fork.png
-                player.state = "Collid"
-                for i in hurdle:
-                    i.state = "Collid"
-        elif  player.state == "Run" or player.state == "Slide" or player.state == "Jump":
-            for i in hurdle:
-                i.state = "None"
-        elif collide(player, i) and player.big == True:
-                i.y += 800
-                if i.arr['dir'] == 'Image\\item_jelly.png':
+                    else:
+                        player.state = "Big"
+                    player.big = True
+                    player.big_time = player.total_frames
+                #elif player.state == "Big":
+                    #print(frame_time)
+                elif i.arr['dir'] == 'Image\\item_jelly.png':
+                    jelly_sound.play()
                     player.score += 1
                     hurdle.remove(i)
+                elif i.arr['dir'] == 'Image\\hp_jelly.png':
+                    hp_sound.play()
+                    player.hp_time = player.total_frames
+                    player.hpmove -= 200
+                    player.bool_hp = True
+                    hurdle.remove(i)
+                else:
+                    #print(i.arr['dir'])         #    Image\Stage1_Fork.png
+                    player.state = "Collid"
+                    collid_sound.play()
+                    player.hpmove += 30
+                    for i in hurdle:
+                        i.state = "Collid"
+            elif  player.state == "Run" or player.state == "Slide" or player.state == "Jump":
+                for i in hurdle:
+                    i.state = "None"
+            elif collide(player, i) and player.big == True:
+                    i.y += 800
+                    if i.arr['dir'] == 'Image\\item_jelly.png':
+                        jelly_sound.play()
+                        player.score += 1
+                        hurdle.remove(i)
+                    else:
+                        big_collid_sound.play()
                 #i.x -= cos(angle * 3.14 / 180) * 100
                 #i.y += sin(angle * 3.14 / 180) * 100
                 #angle += 50

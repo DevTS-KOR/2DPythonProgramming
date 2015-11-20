@@ -1,6 +1,7 @@
 from pico2d import *
 import json
 
+
 hurdle_data_file = open('MapData\\FirstMap_hurdle1.txt', 'r')
 hurdle_data = json.load(hurdle_data_file)
 hurdle_data_file.close()
@@ -49,11 +50,7 @@ hurdle_len_file5 = open('MapData\\TypeOfHurdle5.txt', 'r')
 len_data5 = json.load(hurdle_len_file5)
 hurdle_len_file5.close()
 
-Hurdle_Start1 = False
-Hurdle_Start2 = False
-Hurdle_Start3 = False
-Hurdle_Start4 = False
-Hurdle_Start5 = False
+
 random_resource = [0, 1, 2, 3, 4, 5, 6, 7]
 draw_count1 = 0
 draw_count2 = 0
@@ -66,8 +63,8 @@ class Hurdle:
     RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
     RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
     RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
-    state = "None"
     STAND = 0
+    nn = 0
 
     def hurdle_move(self, frame_time):
 
@@ -94,8 +91,10 @@ class Hurdle:
         self.height = 0
         self.arr = None
         self.rotate = False
-
-
+        self.Hurdle_Start1 = False
+        Hurdle.nn += 1
+        self.state = "None"
+        print(self.x)
         if HurdleType == len_data['Stage1_Fork']['num']:
             self.arr = len_data['Stage1_Fork']
         elif HurdleType == len_data['Stage1_Fork2']['num']:
@@ -111,6 +110,8 @@ class Hurdle:
         self.width = self.arr['width']
         self.height = self.arr['height']
 
+    def __del__(self):
+        pass
 
     def create(self, num):
         hurdle = []
@@ -127,14 +128,15 @@ class Hurdle:
         global Hurdle_Start1, random_draw1
 
         if Count_copy >= 1:
-            Hurdle_Start1 = True
+            self.Hurdle_Start1 = True
 
-        if Hurdle_Start1 == True and self.state != "Collid":
+        if self.Hurdle_Start1 == True and self.state != "Collid":
             self.hurdle_move(frame_time)
             self.sum = 0
 
-        elif Hurdle_Start1 == True and self.state == "Collid":
+        elif self.Hurdle_Start1 == True and self.state == "Collid":
             if self.sum < 30:
+
                 self.sum += 10
                 for i in range(2):
                     if self.x > 150:
@@ -150,7 +152,7 @@ class Hurdle:
         draw_rectangle(*self.get_bb())
 
     def draw(self):
-        if Hurdle_Start1 == True:
+        if self.Hurdle_Start1 == True:
             self.image.draw(self.x, self.y)
 
 
@@ -161,8 +163,9 @@ class Hurdle2:
     RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
     RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
     RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
-
+    #state = "None"
     STAND = 0
+    nn = 0
 
     def hurdle_move(self, frame_time):
 
@@ -172,6 +175,7 @@ class Hurdle2:
             self.distance = Hurdle2.RUN_SPEED_PPS * frame_time
             #self.distance += (Hurdle2.RUN_SPEED_PPS / 10) * (frame_time / 10000)
             self.x -= self.distance
+
 
     hurdle_state = {
         STAND: hurdle_move
@@ -188,7 +192,9 @@ class Hurdle2:
         self.width = 0
         self.height = 0
         self.arr = None
-
+        self.state = "None"
+        self.Hurdle_Start2 = False
+        Hurdle2.nn += 1
         if HurdleType == len_data2['Stage1_Fork']['num']:
             self.arr = len_data2['Stage1_Fork']
         elif HurdleType == len_data2['Stage1_thorn4']['num']:
@@ -201,6 +207,9 @@ class Hurdle2:
         self.image = load_image(self.arr['dir'])
         self.width = self.arr['width']
         self.height = self.arr['height']
+
+    def __del__(self):
+        pass
 
     def create(self, num):
         hurdle2 = []
@@ -217,13 +226,13 @@ class Hurdle2:
         global Hurdle_Start2, random_draw2
 
         if Count_copy >= 2:
-            Hurdle_Start2 = True
+            self.Hurdle_Start2 = True
 
-        if Hurdle_Start2 == True and self.state != "Collid":
+        if self.Hurdle_Start2 == True and self.state != "Collid":
             self.hurdle_move(frame_time)
             self.sum = 0
 
-        elif Hurdle_Start2 == True and self.state == "Collid":
+        elif self.Hurdle_Start2 == True and self.state == "Collid":
             if self.sum < 30:
                 self.sum += 10
                 for i in range(2):
@@ -233,7 +242,7 @@ class Hurdle2:
                         self.x -= 20
 
     def draw(self):
-        if Hurdle_Start2 == True:
+        if self.Hurdle_Start2 == True:
             self.image.draw(self.x, self.y)
 
 
@@ -252,7 +261,7 @@ class Hurdle3:
     RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
     RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
 
-
+    state = "None"
     STAND = 0
 
     def hurdle_move(self, frame_time):
@@ -279,6 +288,7 @@ class Hurdle3:
         self.width = 0
         self.height = 0
         self.arr = None
+        self.Hurdle_Start3 = False
 
 
         if HurdleType == len_data3['Stage1_Fork']['num']:
@@ -287,6 +297,8 @@ class Hurdle3:
             self.arr = len_data3['Stage1_Fork2']
         elif HurdleType == len_data3['Stage1_thorn4']['num']:
             self.arr = len_data3['Stage1_thorn4']
+        elif HurdleType == len_data3['item_jelly']['num']:
+            self.arr = len_data3['item_jelly']
 
         self.image = load_image(self.arr['dir'])
         self.width = self.arr['width']
@@ -307,13 +319,13 @@ class Hurdle3:
         global Hurdle_Start3
 
         if Count_copy >= 3:
-            Hurdle_Start3 = True
+            self.Hurdle_Start3 = True
 
-        if Hurdle_Start3 == True and self.state != "Collid":
+        if self.Hurdle_Start3 == True and self.state != "Collid":
             self.hurdle_move(frame_time)
             self.sum = 0
 
-        elif Hurdle_Start3 == True and self.state == "Collid":
+        elif self.Hurdle_Start3 == True and self.state == "Collid":
             if self.sum < 30:
                 self.sum += 10
                 for i in range(2):
@@ -323,7 +335,7 @@ class Hurdle3:
                         self.x -= 20
 
     def draw(self):
-        if Hurdle_Start3 == True:
+        if self.Hurdle_Start3 == True:
             self.image.draw(self.x, self.y)
 
 
@@ -341,7 +353,7 @@ class Hurdle4:
     RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
     RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
     RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
-
+    state = "None"
     STAND = 0
 
     def hurdle_move(self, frame_time):
@@ -368,6 +380,7 @@ class Hurdle4:
         self.width = 0
         self.height = 0
         self.arr = None
+        self.Hurdle_Start4 = False
 
         if HurdleType == len_data4['Stage1_Fork']['num']:
             self.arr = len_data4['Stage1_Fork']
@@ -379,6 +392,8 @@ class Hurdle4:
             self.arr = len_data4['Stage1_thorn4']
         elif HurdleType == len_data4['Stage1_thorn5']['num']:
             self.arr = len_data4['Stage1_thorn5']
+        elif HurdleType == len_data4['item_jelly']['num']:
+            self.arr = len_data4['item_jelly']
 
         self.image = load_image(self.arr['dir'])
         self.width = self.arr['width']
@@ -399,13 +414,13 @@ class Hurdle4:
         global Hurdle_Start4
 
         if Count_copy >= 4:
-            Hurdle_Start4 = True
+            self.Hurdle_Start4 = True
 
-        if Hurdle_Start4 == True and self.state != "Collid":
+        if self.Hurdle_Start4 == True and self.state != "Collid":
             self.hurdle_move(frame_time)
             self.sum = 0
 
-        elif Hurdle_Start4 == True and self.state == "Collid":
+        elif self.Hurdle_Start4 == True and self.state == "Collid":
             if self.sum < 30:
                 self.sum += 10
                 for i in range(2):
@@ -416,7 +431,7 @@ class Hurdle4:
 
 
     def draw(self):
-        if Hurdle_Start4 == True:
+        if self.Hurdle_Start4 == True:
             self.image.draw(self.x, self.y)
 
 
@@ -434,7 +449,7 @@ class Hurdle5:
     RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
     RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
     RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
-
+    state = "None"
     #Image_init = None
     STAND = 0
 
@@ -462,6 +477,7 @@ class Hurdle5:
         self.width = 0
         self.height = 0
         self.arr = None
+        self.Hurdle_Start5 = False
 
         if HurdleType == len_data5['Stage1_Fork']['num']:
             self.arr = len_data5['Stage1_Fork']
@@ -471,6 +487,10 @@ class Hurdle5:
             self.arr = len_data5['Stage1_thorn4']
         elif HurdleType == len_data5['Stage1_thorn5']['num']:
             self.arr = len_data5['Stage1_thorn5']
+        elif HurdleType == len_data5['item_jelly']['num']:
+            self.arr = len_data5['item_jelly']
+        elif HurdleType == len_data5['hp_jelly']['num']:
+            self.arr = len_data5['hp_jelly']
 
         self.image = load_image(self.arr['dir'])
         self.width = self.arr['width']
@@ -480,8 +500,8 @@ class Hurdle5:
         hurdle5 = []
         for i in range(2):
             self.name = "택수"
-            self.x = hurdle_data4[i]['x']
-            self.y = hurdle_data4[i]['y']
+            self.x = hurdle_data5[i]['x']
+            self.y = hurdle_data5[i]['y']
             hurdle5.append(self)
 
         return hurdle5
@@ -491,13 +511,13 @@ class Hurdle5:
         global Hurdle_Start5
 
         if Count_copy >= 5:
-            Hurdle_Start5 = True
+            self.Hurdle_Start5 = True
 
-        if Hurdle_Start5 == True and self.state != "Collid":
+        if self.Hurdle_Start5 == True and self.state != "Collid":
             self.hurdle_move(frame_time)
             self.sum = 0
 
-        elif Hurdle_Start5 == True and self.state == "Collid":
+        elif self.Hurdle_Start5 == True and self.state == "Collid":
             if self.sum < 30:
                 self.sum += 10
                 for i in range(2):
@@ -507,7 +527,7 @@ class Hurdle5:
                         self.x -= 20
 
     def draw(self):
-        if Hurdle_Start5 == True:
+        if self.Hurdle_Start5 == True:
             self.image.draw(self.x, self.y)
 
 
