@@ -1,0 +1,7 @@
+{
+  "Stage4_Spear2" : {"Len": 5, "num" : 0, "dir": "Image\\Stage4_Spear2.png", "width": 440, "height" : 100 },
+  "Stage4_thorn4" : {"Len": 4, "num" : 1, "dir": "Image\\Stage4_thorn4.png", "width": 40, "height" : 35 },
+  "big_jelly" : {"Len": 6, "num" : 2, "dir": "Image\\big_jelly4.png", "width": 35, "height" : 35 }
+}
+
+

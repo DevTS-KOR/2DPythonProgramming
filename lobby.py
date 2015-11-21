@@ -83,7 +83,7 @@ def exit():
 
 
 def handle_events():
-    global time, go_shop, go_shop_click, bgm
+    global time, go_shop, go_shop_click, bgm, sum_score
     global x, y
     events = get_events()
     for event in events:
@@ -107,6 +107,9 @@ def handle_events():
         else:
             if(event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
                 game_framework.quit()
+
+            elif event.type == SDL_KEYDOWN and event.key == SDLK_2:
+                sum_score += 100
             #elif(event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
                 #time = True
                 #game_framework.change_state(main_state)

@@ -15,16 +15,19 @@ chestnut_buy = None
 chestnut_select = None
 chestnut_buy_click = None
 chestnut_select_click = None
+chestnut_money = 0
 
 dog_buy = None
 dog_select = None
 dog_buy_click = None
 dog_select_click = None
+dog_money = 100
 
 wafer_buy = None
 wafer_select = None
 wafer_buy_click = None
 wafer_select_click = None
+wafer_money = 100
 
 chestnut_check = None
 dog_check = None
@@ -131,12 +134,14 @@ def handle_events():
                 button.play()
                 chestnut_pet_buy = True
 
-            elif x > 344 and x < 436 and y > 204 and y < 236:
+            elif x > 344 and x < 436 and y > 204 and y < 236  and lobby.sum_score >= dog_money:
                 button.play()
+                lobby.sum_score -= dog_money
                 dog_pet_buy = True
 
-            elif x > 584 and x < 676 and y > 204 and y < 236:
+            elif x > 584 and x < 676 and y > 204 and y < 236  and lobby.sum_score >= dog_money:
                 button.play()
+                lobby.sum_score -= wafer_money
                 wafer_pet_buy = True
 
             elif x > 685 and x < 735 and y > 515 and y < 565:

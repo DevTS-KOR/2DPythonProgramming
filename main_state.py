@@ -12,6 +12,7 @@ import game_framework
 import title_state
 import main_state2
 import lobby
+import converter
 
 name = "MainState"
 
@@ -149,7 +150,7 @@ def enter():
 
 def exit():
     global player, background, ground, pet, hurdle, lobby
-   # del(player)
+    #del(player)
     lobby.score = player.score
     del(background)
     del(ground)
@@ -185,6 +186,8 @@ def handle_events():
 
     if background.frame >= 8:
         #print(background.frame)
+        converter.player_hpsize = player.hpsize
+        converter.player_score = player.score
         game_framework.change_state(main_state2)
 
     for event in events:
@@ -194,15 +197,20 @@ def handle_events():
         elif event.type == SDL_MOUSEBUTTONDOWN:
             if player.mouse_x > 354 and player.mouse_x < 446 and player.mouse_y > 259 and player.mouse_y < 291:
                 result_ok_sound.play()
+                player.bgm.stop()
                 game_framework.change_state(lobby)
 
 
 
         else:
             if event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
+                player.bgm.stop()
                 game_framework.change_state(title_state)
 
             elif event.type == SDL_KEYDOWN and event.key == SDLK_2:
+                player.bgm.stop()
+                converter.player_hpsize = player.hpsize
+                converter.player_score = player.score
                 game_framework.change_state(main_state2)
 
             else:
@@ -236,7 +244,7 @@ def update():
         background.update(frame_time, player.state)
         ground.update(frame_time, player.state)
         pet.update(frame_time)
-    player.update(frame_time, player.score)
+    player.update(frame_time, converter.player_hpsize)
 
     if player.hpsize < 500:
         for i in hurdle:
@@ -260,7 +268,7 @@ def update():
                 elif i.arr['dir'] == 'Image\\hp_jelly.png':
                     hp_sound.play()
                     player.hp_time = player.total_frames
-                    player.hpmove -= 200
+                    player.hpmove -= 300
                     player.bool_hp = True
                     hurdle.remove(i)
                 else:
