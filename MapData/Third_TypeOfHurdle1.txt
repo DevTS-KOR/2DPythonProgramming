@@ -2,7 +2,8 @@
   "Stage3_Spear" : {"Len": 3, "num" : 0, "dir": "Image\\Stage3_Spear.png", "width": 80, "height" : 448 },
   "Stage3_Spear2" : {"Len": 4, "num" : 1, "dir": "Image\\Stage3_Spear2.png", "width": 80, "height" : 448 },
   "Stage3_thorn3" : {"Len": 1, "num" : 2, "dir": "Image\\Stage3_thorn3.png", "width": 25, "height" : 35 },
-  "big_jelly" : {"Len": 1, "num" : 3, "dir": "Image\\big_jelly3.png", "width": 25, "height" : 35 }
+  "big_jelly" : {"Len": 1, "num" : 3, "dir": "Image\\big_jelly3.png", "width": 25, "height" : 35 },
+  "item_jelly" : {"Len": 18, "num" : 4, "dir": "Image\\item_jelly3.png", "width": 25, "height" : 35 }
 }
 
 

@@ -97,6 +97,8 @@ def enter():
             hurdle.append(Hurdle_second(len_data2_1['Stage2_thorn2']['num'], i))
         for i in range(len_data2_1['Stage2_thorn3']['Len']):
             hurdle.append(Hurdle_second(len_data2_1['Stage2_thorn3']['num'], i))
+        for i in range(len_data2_1['item_jelly']['Len']):
+            hurdle.append(Hurdle_second(len_data2_1['item_jelly']['num'], i))
 
 ##############################################################################
 
@@ -108,7 +110,8 @@ def enter():
         hurdle.append(Hurdle_second2(len_data2_2['Stage2_thorn']['num'], i))
     for i in range(len_data2_2['big_jelly']['Len']):
         hurdle.append(Hurdle_second2(len_data2_2['big_jelly']['num'], i))
-
+    for i in range(len_data2_2['item_jelly']['Len']):
+        hurdle.append(Hurdle_second2(len_data2_2['item_jelly']['num'], i))
 ################################################################################
 
     for i in range(len_data2_3['Stage2_Spear']['Len']):
@@ -117,7 +120,8 @@ def enter():
         hurdle.append(Hurdle_second3(len_data2_3['Stage2_Spear2']['num'], i))
     for i in range(len_data2_3['Stage2_thorn3']['Len']):
         hurdle.append(Hurdle_second3(len_data2_3['Stage2_thorn3']['num'], i))
-
+    for i in range(len_data2_3['item_jelly']['Len']):
+        hurdle.append(Hurdle_second3(len_data2_3['item_jelly']['num'], i))
 
 ################################################################################
 
@@ -129,6 +133,8 @@ def enter():
         hurdle.append(Hurdle_second4(len_data2_4['Stage2_thorn2']['num'], i))
     for i in range(len_data2_4['hp_jelly']['Len']):
         hurdle.append(Hurdle_second4(len_data2_4['hp_jelly']['num'], i))
+    for i in range(len_data2_4['item_jelly']['Len']):
+        hurdle.append(Hurdle_second4(len_data2_4['item_jelly']['num'], i))
 
 
 ##################################################################################
@@ -143,6 +149,8 @@ def enter():
         hurdle.append(Hurdle_second5(len_data2_5['Stage2_thorn3']['num'], i))
     for i in range(len_data2_5['hp_jelly']['Len']):
         hurdle.append(Hurdle_second5(len_data2_5['hp_jelly']['num'], i))
+    for i in range(len_data2_5['item_jelly']['Len']):
+        hurdle.append(Hurdle_second5(len_data2_5['item_jelly']['num'], i))
 
 
 

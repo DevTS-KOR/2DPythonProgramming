@@ -1473,67 +1473,67 @@ class Player_four:
                 self.result_ok.draw(400 ,275)
 
             if self.score % 10 == 0:
-                self.zero.rotate_draw(22, 460, 440)
+                self.zero.rotate_draw(33, 460, 440)
             elif self.score % 10 == 1:
-                self.one.rotate_draw(22, 460, 440)
+                self.one.rotate_draw(33, 460, 440)
             elif self.score % 10 == 2:
-                self.two.rotate_draw(22, 460, 440)
+                self.two.rotate_draw(3, 460, 440)
             elif self.score % 10 == 3:
-                self.three.rotate_draw(22, 460, 440)
+                self.three.rotate_draw(33, 460, 440)
             elif self.score % 10 == 4:
-                self.four.rotate_draw(22, 460, 440)
+                self.four.rotate_draw(33, 460, 440)
             elif self.score % 10 == 5:
-                self.five.rotate_draw(22, 460, 440)
+                self.five.rotate_draw(33, 460, 440)
             elif self.score % 10 == 6:
-                self.six.rotate_draw(22, 460, 440)
+                self.six.rotate_draw(33, 460, 440)
             elif self.score % 10 == 7:
-                self.seven.rotate_draw(22, 460, 440)
+                self.seven.rotate_draw(33, 460, 440)
             elif self.score % 10 == 8:
-                self.eight.rotate_draw(22, 460, 440)
+                self.eight.rotate_draw(33, 460, 440)
             elif self.score % 10 == 9:
-                self.nine.rotate_draw(22, 460, 440)
+                self.nine.rotate_draw(33, 460, 440)
 
             if int(self.score / 10) % 10 == 0:
-                self.zero.rotate_draw(22, 400, 440)
+                self.zero.rotate_draw(33, 400, 440)
             elif int(self.score / 10) % 10 == 1:
-                self.one.rotate_draw(22, 400, 440)
+                self.one.rotate_draw(33, 400, 440)
             elif int(self.score / 10) % 10 == 2:
-                self.two.rotate_draw(22, 400, 440)
+                self.two.rotate_draw(33, 400, 440)
             elif int(self.score / 10) % 10 == 3:
-                self.three.rotate_draw(22, 400, 440)
+                self.three.rotate_draw(33, 400, 440)
             elif int(self.score / 10) % 10 == 4:
-                self.four.rotate_draw(22, 400, 440)
+                self.four.rotate_draw(33, 400, 440)
             elif int(self.score / 10) % 10 == 5:
-                self.five.rotate_draw(22, 400, 440)
+                self.five.rotate_draw(33, 400, 440)
             elif int(self.score / 10) % 10 == 6:
-                self.six.rotate_draw(22, 400, 440)
+                self.six.rotate_draw(33, 400, 440)
             elif int(self.score / 10) % 10 == 7:
-                self.seven.rotate_draw(22, 400, 440)
+                self.seven.rotate_draw(33, 400, 440)
             elif int(self.score / 10) % 10 == 8:
-                self.eight.rotate_draw(22, 400, 440)
+                self.eight.rotate_draw(33, 400, 440)
             elif int(self.score / 10) % 10 == 9:
-                self.nine.rotate_draw(22, 400, 440)
+                self.nine.rotate_draw(33, 400, 440)
 
             if int(self.score / 100) == 0:
-                self.zero.rotate_draw(22, 340, 440)
+                self.zero.rotate_draw(33, 340, 440)
             elif int(self.score / 100) == 1:
-                self.one.rotate_draw(22, 340, 440)
+                self.one.rotate_draw(33, 340, 440)
             elif int(self.score / 100) == 2:
-                self.two.rotate_draw(22, 340, 440)
+                self.two.rotate_draw(33, 340, 440)
             elif int(self.score / 100) == 3:
-                self.three.rotate_draw(22, 340, 440)
+                self.three.rotate_draw(33, 340, 440)
             elif int(self.score / 100) == 4:
-                self.four.rotate_draw(22, 340, 440)
+                self.four.rotate_draw(33, 340, 440)
             elif int(self.score / 100) == 5:
-                self.five.rotate_draw(22, 340, 440)
+                self.five.rotate_draw(33, 340, 440)
             elif int(self.score / 100) == 6:
-                self.six.rotate_draw(22, 340, 440)
+                self.six.rotate_draw(33, 340, 440)
             elif int(self.score / 100) == 7:
-                self.seven.rotate_draw(22, 340, 440)
+                self.seven.rotate_draw(33, 340, 440)
             elif int(self.score / 100) == 8:
-                self.eight.rotate_draw(22, 340, 440)
+                self.eight.rotate_draw(33, 340, 440)
             elif int(self.score / 100) == 9:
-                self.nine.rotate_draw(22, 340, 440)
+                self.nine.rotate_draw(33, 340, 440)
             #self.bool_dead = False
 
         if self.bool_hp == True:

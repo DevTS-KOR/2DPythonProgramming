@@ -728,6 +728,8 @@ class Hurdle_second:
             self.arr = len_data2_1['Stage2_thorn2']
         elif HurdleType == len_data2_1['Stage2_thorn3']['num']:
             self.arr = len_data2_1['Stage2_thorn3']
+        elif HurdleType == len_data2_1['item_jelly']['num']:
+            self.arr = len_data2_1['item_jelly']
 
         self.image = load_image(self.arr['dir'])
         self.width = self.arr['width']
@@ -820,6 +822,8 @@ class Hurdle_second2:
             self.arr = len_data2_2['Stage2_thorn']
         elif HurdleType == len_data2_2['big_jelly']['num']:
             self.arr = len_data2_2['big_jelly']
+        elif HurdleType == len_data2_2['item_jelly']['num']:
+            self.arr = len_data2_2['item_jelly']
 
         self.image = load_image(self.arr['dir'])
         self.width = self.arr['width']
@@ -911,8 +915,8 @@ class Hurdle_second3:
             self.arr = len_data2_3['Stage2_Spear2']
         elif HurdleType == len_data2_3['Stage2_thorn3']['num']:
             self.arr = len_data2_3['Stage2_thorn3']
-        #elif HurdleType == len_data2_3['big_jelly']['num']:
-            #self.arr = len_data2_3['big_jelly']
+        elif HurdleType == len_data2_3['item_jelly']['num']:
+            self.arr = len_data2_3['item_jelly']
 
         self.image = load_image(self.arr['dir'])
         self.width = self.arr['width']
@@ -1004,6 +1008,8 @@ class Hurdle_second4:
             self.arr = len_data2_4['Stage2_thorn2']
         elif HurdleType == len_data2_4['hp_jelly']['num']:
             self.arr = len_data2_4['hp_jelly']
+        elif HurdleType == len_data2_4['item_jelly']['num']:
+            self.arr = len_data2_4['item_jelly']
 
         self.image = load_image(self.arr['dir'])
         self.width = self.arr['width']
@@ -1098,6 +1104,8 @@ class Hurdle_second5:
             self.arr = len_data2_5['Stage2_thorn3']
         elif HurdleType == len_data2_5['hp_jelly']['num']:
             self.arr = len_data2_5['hp_jelly']
+        elif HurdleType == len_data2_5['item_jelly']['num']:
+            self.arr = len_data2_5['item_jelly']
 
         self.image = load_image(self.arr['dir'])
         self.width = self.arr['width']
@@ -1194,6 +1202,8 @@ class Hurdle_third:
             self.arr = len_data3_1['Stage3_thorn3']
         elif HurdleType == len_data3_1['big_jelly']['num']:
             self.arr = len_data3_1['big_jelly']
+        elif HurdleType == len_data3_1['item_jelly']['num']:
+            self.arr = len_data3_1['item_jelly']
 
         self.image = load_image(self.arr['dir'])
         self.width = self.arr['width']
@@ -1291,7 +1301,8 @@ class Hurdle_third2:
             self.arr = len_data3_2['Stage3_thorn3']
         elif HurdleType == len_data3_2['Stage3_thorn4']['num']:
             self.arr = len_data3_2['Stage3_thorn4']
-
+        elif HurdleType == len_data3_2['item_jelly']['num']:
+            self.arr = len_data3_2['item_jelly']
         self.image = load_image(self.arr['dir'])
         self.width = self.arr['width']
         self.height = self.arr['height']
@@ -1392,6 +1403,8 @@ class Hurdle_third3:
             self.arr = len_data3_3['Stage3_thorn5']
         elif HurdleType == len_data3_3['hp_jelly']['num']:
             self.arr = len_data3_3['hp_jelly']
+        elif HurdleType == len_data3_3['item_jelly']['num']:
+            self.arr = len_data3_3['item_jelly']
 
         self.image = load_image(self.arr['dir'])
         self.width = self.arr['width']
@@ -1491,6 +1504,8 @@ class Hurdle_third4:
             self.arr = len_data3_4['Stage3_thorn3']
         elif HurdleType == len_data3_4['Stage3_thorn4']['num']:
             self.arr = len_data3_4['Stage3_thorn4']
+        elif HurdleType == len_data3_4['item_jelly']['num']:
+            self.arr = len_data3_4['item_jelly']
 
 
         self.image = load_image(self.arr['dir'])
@@ -1591,6 +1606,8 @@ class Hurdle_third5:
             self.arr = len_data3_5['Stage3_thorn5']
         elif HurdleType == len_data3_5['hp_jelly']['num']:
             self.arr = len_data3_5['hp_jelly']
+        elif HurdleType == len_data3_5['item_jelly']['num']:
+            self.arr = len_data3_5['item_jelly']
 
 
         self.image = load_image(self.arr['dir'])
@@ -1693,6 +1710,8 @@ class Hurdle_four:
             self.arr = len_data4_1['Stage4_thorn2']
         elif HurdleType == len_data4_1['hp_jelly']['num']:
             self.arr = len_data4_1['hp_jelly']
+        elif HurdleType == len_data4_1['item_jelly']['num']:
+            self.arr = len_data4_1['item_jelly']
 
 
         self.image = load_image(self.arr['dir'])
@@ -1793,6 +1812,8 @@ class Hurdle_four2:
             self.arr = len_data4_2['Stage4_thorn4']
         elif HurdleType == len_data4_2['big_jelly']['num']:
             self.arr = len_data4_2['big_jelly']
+        elif HurdleType == len_data4_2['item_jelly']['num']:
+            self.arr = len_data4_2['item_jelly']
 
 
         self.image = load_image(self.arr['dir'])
@@ -1891,6 +1912,8 @@ class Hurdle_four3:
             self.arr = len_data4_3['Stage4_thorn4']
         elif HurdleType == len_data4_3['big_jelly']['num']:
             self.arr = len_data4_3['big_jelly']
+        elif HurdleType == len_data4_3['item_jelly']['num']:
+            self.arr = len_data4_3['item_jelly']
 
 
         self.image = load_image(self.arr['dir'])
@@ -1989,6 +2012,8 @@ class Hurdle_four4:
             self.arr = len_data4_4['Stage4_thorn2']
         elif HurdleType == len_data4_4['Stage4_thorn3']['num']:
             self.arr = len_data4_4['Stage4_thorn3']
+        elif HurdleType == len_data4_4['item_jelly']['num']:
+            self.arr = len_data4_4['item_jelly']
 
 
         self.image = load_image(self.arr['dir'])
@@ -2090,7 +2115,8 @@ class Hurdle_four5:
             self.arr = len_data4_5['Stage4_thorn4']
         elif HurdleType == len_data4_5['hp_jelly']['num']:
             self.arr = len_data4_5['hp_jelly']
-
+        elif HurdleType == len_data4_5['item_jelly']['num']:
+            self.arr = len_data4_5['item_jelly']
 
         self.image = load_image(self.arr['dir'])
         self.width = self.arr['width']
