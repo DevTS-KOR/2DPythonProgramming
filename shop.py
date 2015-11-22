@@ -1,6 +1,6 @@
 import game_framework
 import lobby
-import main_state
+import converter
 from pico2d import *
 
 
@@ -43,11 +43,12 @@ wafer_select_check = False
 
 pet = "None"
 button = None
+buy_score = 0
 
 def enter():
     global image, exit, chestnut_buy, chestnut_select, chestnut_buy_click, chestnut_select_click, dog_pet_buy, dog_check, wafer_check, chestnut_check
     global dog_buy, dog_select, dog_buy_click, dog_select_click
-    global wafer_buy, wafer_select, wafer_buy_click, wafer_select_click, button
+    global wafer_buy, wafer_select, wafer_buy_click, wafer_select_click, button, buy_score
     image = load_image('Image\\Shop\\shop_main.png')
     exit = load_image('Image\\Shop\\exit_button.png')
     chestnut_buy = load_image('Image\\Shop\\buy_button.png')
@@ -76,6 +77,9 @@ def enter():
         button = load_wav('Sound\\ui_1.wav')
         button.set_volume(128)
 
+    if buy_score != 0:
+        buy_score = 0
+
 def exit():
     global image, exit, chestnut_buy, chestnut_select, chestnut_buy_click, chestnut_select_click
     global dog_buy, dog_select, dog_buy_click, dog_select_click, wafer_buy, wafer_select, wafer_buy_click, wafer_select_click
@@ -101,7 +105,7 @@ def exit():
 
 def handle_events():
     global time, chestnut_pet_buy, x, y, dog_pet_buy, wafer_pet_buy
-    global chestnut_select_check, dog_select_check, wafer_select_check, button
+    global chestnut_select_check, dog_select_check, wafer_select_check, button, buy_score
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -137,11 +141,13 @@ def handle_events():
             elif x > 344 and x < 436 and y > 204 and y < 236  and lobby.sum_score >= dog_money:
                 button.play()
                 lobby.sum_score -= dog_money
+                buy_score += dog_money
                 dog_pet_buy = True
 
             elif x > 584 and x < 676 and y > 204 and y < 236  and lobby.sum_score >= dog_money:
                 button.play()
                 lobby.sum_score -= wafer_money
+                buy_score += wafer_money
                 wafer_pet_buy = True
 
             elif x > 685 and x < 735 and y > 515 and y < 565:

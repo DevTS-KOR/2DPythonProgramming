@@ -40,7 +40,10 @@ def enter():
     #print(1)
     global background, game_start, gmae_start_click, pet, pet_click, chestnut, dog, wafer, bgm, go_shop
     global one, two, three, four , five, six, seven, eight, nine, zero, score, sum_score
-    sum_score += score
+
+    print(sum_score)
+    sum_score = score - shop.buy_score
+
     background = load_image('Image\\Lobby\\lobby_background2.png')
     game_start = load_image('Image\\Lobby\\game_start_button.png')
     gmae_start_click = load_image('Image\\Lobby\\game_start_button_click.png')
@@ -66,7 +69,7 @@ def enter():
     #배경 bgm
     if bgm_re == True:
         bgm = load_music('Sound\\Start.mp3')
-        bgm.set_volume(16)
+        bgm.set_volume(4)
         bgm.repeat_play()
 
     if go_shop == None:

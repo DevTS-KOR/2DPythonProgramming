@@ -34,26 +34,26 @@ class Player:
         self.result_count = 0
         ######사운드#####
         self.bgm = load_music('Sound\\Stage1.mp3')
-        self.bgm.set_volume(16)
+        self.bgm.set_volume(8)
         self.bgm.repeat_play()
 
         self.jump_sound = load_wav('Sound\\jump.wav')
-        self.jump_sound.set_volume(64)
+        self.jump_sound.set_volume(16)
 
         self.slide_sound = load_wav('Sound\\slide.wav')
-        self.slide_sound.set_volume(64)
+        self.slide_sound.set_volume(16)
 
         self.giant_jump_start_sound = load_wav('Sound\\g_giantjump.wav')
-        self.giant_jump_start_sound.set_volume(64)
+        self.giant_jump_start_sound.set_volume(16)
 
         self.giant_jump_end_sound = load_wav('Sound\\g_giantland.wav')
-        self.giant_jump_end_sound.set_volume(128)
+        self.giant_jump_end_sound.set_volume(32)
 
         self.dead_sound = load_wav('Sound\\g_end.wav')
-        self.dead_sound.set_volume(128)
+        self.dead_sound.set_volume(32)
 
         self.result_sound = load_wav('Sound\\r_score.wav')
-        self.result_sound.set_volume(128)
+        self.result_sound.set_volume(32)
 
         if Player.Image_init == None:
             self.run_cookie = load_image('Image\\stage1_cookie\\cookie_run.png')
@@ -90,10 +90,16 @@ class Player:
         self.jump = 0
         self.jump_gravity = 0
 
+    def __del__(self):
+        self.total_frames
+        self.hp_frame
+        self.hpsize
+        self.hpmove
+
     def update(self, frame_time, hpsize):
-        print(hpsize)
         self.total_frames += Player.FRAMES_PER_ACTION * Player.ACTION_PER_TIME * frame_time
         self.hp_frame += self.total_frames
+        print(int((self.hp_frame) / 5000) + self.hpmove)
         self.hpsize = int((self.hp_frame) / 5000) + self.hpmove + hpsize
         self.frame = int(self.total_frames) % 6
         self.gravity()
@@ -449,26 +455,26 @@ class Player_second:
         self.result_count = 0
         ######사운드#####
         self.bgm = load_music('Sound\\Stage2.mp3')
-        self.bgm.set_volume(16)
+        self.bgm.set_volume(8)
         self.bgm.repeat_play()
 
         self.jump_sound = load_wav('Sound\\jump.wav')
-        self.jump_sound.set_volume(64)
+        self.jump_sound.set_volume(16)
 
         self.slide_sound = load_wav('Sound\\slide.wav')
-        self.slide_sound.set_volume(64)
+        self.slide_sound.set_volume(16)
 
         self.giant_jump_start_sound = load_wav('Sound\\g_giantjump.wav')
-        self.giant_jump_start_sound.set_volume(64)
+        self.giant_jump_start_sound.set_volume(16)
 
         self.giant_jump_end_sound = load_wav('Sound\\g_giantland.wav')
-        self.giant_jump_end_sound.set_volume(128)
+        self.giant_jump_end_sound.set_volume(32)
 
         self.dead_sound = load_wav('Sound\\g_end.wav')
-        self.dead_sound.set_volume(128)
+        self.dead_sound.set_volume(32)
 
         self.result_sound = load_wav('Sound\\r_score.wav')
-        self.result_sound.set_volume(128)
+        self.result_sound.set_volume(32)
 
         if Player.Image_init == None:
             self.run_cookie = load_image('Image\\stage2_cookie\\cookie_run.png')
@@ -505,10 +511,16 @@ class Player_second:
         self.jump = 0
         self.jump_gravity = 0
 
+    def __del__(self):
+        self.total_frames
+        self.hp_frame
+        self.hpsize
+        self.hpmove
 
     def update(self, frame_time, hpsize):
         self.total_frames += Player.FRAMES_PER_ACTION * Player.ACTION_PER_TIME * frame_time
-        self.hp_frame += self.total_frames
+        self.hp_frame += self.total_frames / 2
+        print(int((self.hp_frame) / 5000) + self.hpmove)
         self.hpsize = int((self.hp_frame) / 5000) + self.hpmove + hpsize
         self.frame = int(self.total_frames) % 6
         self.gravity()
@@ -862,26 +874,26 @@ class Player_third:
         self.result_count = 0
         ######사운드#####
         self.bgm = load_music('Sound\\Stage3.mp3')
-        self.bgm.set_volume(16)
+        self.bgm.set_volume(8)
         self.bgm.repeat_play()
 
         self.jump_sound = load_wav('Sound\\jump.wav')
-        self.jump_sound.set_volume(64)
+        self.jump_sound.set_volume(16)
 
         self.slide_sound = load_wav('Sound\\slide.wav')
-        self.slide_sound.set_volume(64)
+        self.slide_sound.set_volume(16)
 
         self.giant_jump_start_sound = load_wav('Sound\\g_giantjump.wav')
-        self.giant_jump_start_sound.set_volume(64)
+        self.giant_jump_start_sound.set_volume(16)
 
         self.giant_jump_end_sound = load_wav('Sound\\g_giantland.wav')
-        self.giant_jump_end_sound.set_volume(128)
+        self.giant_jump_end_sound.set_volume(32)
 
         self.dead_sound = load_wav('Sound\\g_end.wav')
-        self.dead_sound.set_volume(128)
+        self.dead_sound.set_volume(32)
 
         self.result_sound = load_wav('Sound\\r_score.wav')
-        self.result_sound.set_volume(128)
+        self.result_sound.set_volume(32)
 
         if Player.Image_init == None:
             self.run_cookie = load_image('Image\\stage3_cookie\\cookie_run.png')
@@ -918,9 +930,16 @@ class Player_third:
         self.jump = 0
         self.jump_gravity = 0
 
+    def __del__(self):
+        self.total_frames
+        self.hp_frame
+        self.hpsize
+        self.hpmove
+
     def update(self, frame_time, hpsize):
         self.total_frames += Player.FRAMES_PER_ACTION * Player.ACTION_PER_TIME * frame_time
-        self.hp_frame += self.total_frames
+        self.hp_frame += self.total_frames / 3
+        print(int((self.hp_frame) / 5000) + self.hpmove)
         self.hpsize = int((self.hp_frame) / 5000) + self.hpmove + hpsize
         self.frame = int(self.total_frames) % 6
         self.gravity()
@@ -1287,26 +1306,26 @@ class Player_four:
         self.result_count = 0
         ######사운드#####
         self.bgm = load_music('Sound\\Stage4.mp3')
-        self.bgm.set_volume(16)
+        self.bgm.set_volume(8)
         self.bgm.repeat_play()
 
         self.jump_sound = load_wav('Sound\\jump.wav')
-        self.jump_sound.set_volume(64)
+        self.jump_sound.set_volume(16)
 
         self.slide_sound = load_wav('Sound\\slide.wav')
-        self.slide_sound.set_volume(64)
+        self.slide_sound.set_volume(16)
 
         self.giant_jump_start_sound = load_wav('Sound\\g_giantjump.wav')
-        self.giant_jump_start_sound.set_volume(64)
+        self.giant_jump_start_sound.set_volume(16)
 
         self.giant_jump_end_sound = load_wav('Sound\\g_giantland.wav')
-        self.giant_jump_end_sound.set_volume(128)
+        self.giant_jump_end_sound.set_volume(32)
 
         self.dead_sound = load_wav('Sound\\g_end.wav')
-        self.dead_sound.set_volume(128)
+        self.dead_sound.set_volume(32)
 
         self.result_sound = load_wav('Sound\\r_score.wav')
-        self.result_sound.set_volume(128)
+        self.result_sound.set_volume(32)
 
         if Player.Image_init == None:
             self.run_cookie = load_image('Image\\stage4_cookie\\cookie_run.png')
@@ -1343,10 +1362,16 @@ class Player_four:
         self.jump = 0
         self.jump_gravity = 0
 
+    def __del__(self):
+        self.total_frames
+        self.hp_frame
+        self.hpsize
+        self.hpmove
 
     def update(self, frame_time, hpsize):
         self.total_frames += Player.FRAMES_PER_ACTION * Player.ACTION_PER_TIME * frame_time
-        self.hp_frame += self.total_frames
+        self.hp_frame += self.total_frames / 4
+        print(int((self.hp_frame) / 5000) + self.hpmove)
         self.hpsize = int((self.hp_frame) / 5000) + self.hpmove + hpsize
         self.frame = int(self.total_frames) % 6
         self.gravity()
@@ -1477,7 +1502,7 @@ class Player_four:
             elif self.score % 10 == 1:
                 self.one.rotate_draw(33, 460, 440)
             elif self.score % 10 == 2:
-                self.two.rotate_draw(3, 460, 440)
+                self.two.rotate_draw(33, 460, 440)
             elif self.score % 10 == 3:
                 self.three.rotate_draw(33, 460, 440)
             elif self.score % 10 == 4:

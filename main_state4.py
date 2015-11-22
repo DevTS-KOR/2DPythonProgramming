@@ -48,6 +48,7 @@ def enter():
     ground = Ground_four()
     player = Player_four()
     player.score = converter.player_score
+    player.hpsize = converter.player_hpsize
     pet = Pet_four()
 
     #Hurdle.__init__()
@@ -65,27 +66,27 @@ def enter():
     #player.bgm.repeat_play()
     if gaint_sound == None:
         gaint_sound = load_wav('Sound\\i_giant.wav')
-        gaint_sound.set_volume(128)
+        gaint_sound.set_volume(32)
 
     if collid_sound == None:
         collid_sound = load_wav('Sound\\collide.wav')
-        collid_sound.set_volume(64)
+        collid_sound.set_volume(16)
 
     if jelly_sound == None:
         jelly_sound = load_wav('Sound\\g_jelly.wav')
-        jelly_sound.set_volume(32)
+        jelly_sound.set_volume(8)
 
     if big_collid_sound == None:
         big_collid_sound = load_wav('Sound\\big_hit.wav')
-        big_collid_sound.set_volume(128)
+        big_collid_sound.set_volume(32)
 
     if hp_sound == None:
         hp_sound = load_wav('Sound\\i_large_energy.wav')
-        hp_sound.set_volume(128)
+        hp_sound.set_volume(32)
 
     if result_ok_sound == None:
         result_ok_sound = load_wav('Sound\\ui_2.wav')
-        result_ok_sound.set_volume(128)
+        result_ok_sound.set_volume(32)
 
     #for i in range(2):          # 장애물 종류
     #    for j in range(3):      # 물체 개수
