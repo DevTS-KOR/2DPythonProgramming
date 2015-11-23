@@ -96,3 +96,5 @@
 
 2015.11.22 9주차 2차 개발 업로드
 -모든 스테이지 젤리 아이템 구현
+
+2015.11.22 3차발표 영상 : https://www.youtube.com/watch?v=OUKEyOj5sqI&feature=youtu.be
