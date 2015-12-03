@@ -1,4 +1,6 @@
 from pico2d import *
+import lobby
+import converter
 
 import game_framework
 
@@ -34,26 +36,26 @@ class Player:
         self.result_count = 0
         ######사운드#####
         self.bgm = load_music('Sound\\Stage1.mp3')
-        self.bgm.set_volume(8)
+        self.bgm.set_volume(32)
         self.bgm.repeat_play()
 
         self.jump_sound = load_wav('Sound\\jump.wav')
-        self.jump_sound.set_volume(16)
+        self.jump_sound.set_volume(64)
 
         self.slide_sound = load_wav('Sound\\slide.wav')
-        self.slide_sound.set_volume(16)
+        self.slide_sound.set_volume(64)
 
         self.giant_jump_start_sound = load_wav('Sound\\g_giantjump.wav')
-        self.giant_jump_start_sound.set_volume(16)
+        self.giant_jump_start_sound.set_volume(64)
 
         self.giant_jump_end_sound = load_wav('Sound\\g_giantland.wav')
-        self.giant_jump_end_sound.set_volume(32)
+        self.giant_jump_end_sound.set_volume(128)
 
         self.dead_sound = load_wav('Sound\\g_end.wav')
-        self.dead_sound.set_volume(32)
+        self.dead_sound.set_volume(128)
 
         self.result_sound = load_wav('Sound\\r_score.wav')
-        self.result_sound.set_volume(32)
+        self.result_sound.set_volume(128)
 
         if Player.Image_init == None:
             self.run_cookie = load_image('Image\\stage1_cookie\\cookie_run.png')
@@ -166,8 +168,8 @@ class Player:
 
         return self.x - 32, self. y - 43, self.x + 32, self.y + 43
 
-    def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+    #def draw_bb(self):
+        #draw_rectangle(*self.get_bb())
 
 
     def gravity(self):
@@ -231,67 +233,67 @@ class Player:
             else:
                 self.result_ok.draw(400 ,275)
 
-            if self.score % 10 == 0:
+            if converter.player_money % 10 == 0:
                 self.zero.draw(460, 440)
-            elif self.score % 10 == 1:
+            elif converter.player_money % 10 == 1:
                 self.one.draw(460, 440)
-            elif self.score % 10 == 2:
+            elif converter.player_money % 10 == 2:
                 self.two.draw(460, 440)
-            elif self.score % 10 == 3:
+            elif converter.player_money % 10 == 3:
                 self.three.draw(460, 440)
-            elif self.score % 10 == 4:
+            elif converter.player_money % 10 == 4:
                 self.four.draw(460, 440)
-            elif self.score % 10 == 5:
+            elif converter.player_money % 10 == 5:
                 self.five.draw(460, 440)
-            elif self.score % 10 == 6:
+            elif converter.player_money % 10 == 6:
                 self.six.draw(460, 440)
-            elif self.score % 10 == 7:
+            elif converter.player_money % 10 == 7:
                 self.seven.draw(460, 440)
-            elif self.score % 10 == 8:
+            elif converter.player_money % 10 == 8:
                 self.eight.draw(460, 440)
-            elif self.score % 10 == 9:
+            elif converter.player_money % 10 == 9:
                 self.nine.draw(460, 440)
 
-            if int(self.score / 10) % 10 == 0:
+            if int(converter.player_money / 10) % 10 == 0:
                 self.zero.draw(400, 440)
-            elif int(self.score / 10) % 10 == 1:
+            elif int(converter.player_money / 10) % 10 == 1:
                 self.one.draw(400, 440)
-            elif int(self.score / 10) % 10 == 2:
+            elif int(converter.player_money / 10) % 10 == 2:
                 self.two.draw(400, 440)
-            elif int(self.score / 10) % 10 == 3:
+            elif int(converter.player_money / 10) % 10 == 3:
                 self.three.draw(400, 440)
-            elif int(self.score / 10) % 10 == 4:
+            elif int(converter.player_money / 10) % 10 == 4:
                 self.four.draw(400, 440)
-            elif int(self.score / 10) % 10 == 5:
+            elif int(converter.player_money / 10) % 10 == 5:
                 self.five.draw(400, 440)
-            elif int(self.score / 10) % 10 == 6:
+            elif int(converter.player_money / 10) % 10 == 6:
                 self.six.draw(400, 440)
-            elif int(self.score / 10) % 10 == 7:
+            elif int(converter.player_money / 10) % 10 == 7:
                 self.seven.draw(400, 440)
-            elif int(self.score / 10) % 10 == 8:
+            elif int(converter.player_money / 10) % 10 == 8:
                 self.eight.draw(400, 440)
-            elif int(self.score / 10) % 10 == 9:
+            elif int(converter.player_money / 10) % 10 == 9:
                 self.nine.draw(400, 440)
 
-            if int(self.score / 100) == 0:
+            if int(converter.player_money / 100) == 0:
                 self.zero.draw(340, 440)
-            elif int(self.score / 100) == 1:
+            elif int(converter.player_money / 100) == 1:
                 self.one.draw(340, 440)
-            elif int(self.score / 100) == 2:
+            elif int(converter.player_money / 100) == 2:
                 self.two.draw(340, 440)
-            elif int(self.score / 100) == 3:
+            elif int(converter.player_money / 100) == 3:
                 self.three.draw(340, 440)
-            elif int(self.score / 100) == 4:
+            elif int(converter.player_money / 100) == 4:
                 self.four.draw(340, 440)
-            elif int(self.score / 100) == 5:
+            elif int(converter.player_money / 100) == 5:
                 self.five.draw(340, 440)
-            elif int(self.score / 100) == 6:
+            elif int(converter.player_money / 100) == 6:
                 self.six.draw(340, 440)
-            elif int(self.score / 100) == 7:
+            elif int(converter.player_money / 100) == 7:
                 self.seven.draw(340, 440)
-            elif int(self.score / 100) == 8:
+            elif int(converter.player_money / 100) == 8:
                 self.eight.draw(340, 440)
-            elif int(self.score / 100) == 9:
+            elif int(converter.player_money / 100) == 9:
                 self.nine.draw(340, 440)
             #self.bool_dead = False
 
@@ -304,67 +306,67 @@ class Player:
 
 
         ###score부분
-        if self.score % 10 == 0:
+        if converter.player_money % 10 == 0:
             self.zero.draw(750, 750)
-        elif self.score % 10 == 1:
+        elif converter.player_money % 10 == 1:
             self.one.draw(750, 750)
-        elif self.score % 10 == 2:
+        elif converter.player_money % 10 == 2:
             self.two.draw(750, 750)
-        elif self.score % 10 == 3:
+        elif converter.player_money % 10 == 3:
             self.three.draw(750, 750)
-        elif self.score % 10 == 4:
+        elif converter.player_money % 10 == 4:
             self.four.draw(750, 750)
-        elif self.score % 10 == 5:
+        elif converter.player_money % 10 == 5:
             self.five.draw(750, 750)
-        elif self.score % 10 == 6:
+        elif converter.player_money % 10 == 6:
             self.six.draw(750, 750)
-        elif self.score % 10 == 7:
+        elif converter.player_money % 10 == 7:
             self.seven.draw(750, 750)
-        elif self.score % 10 == 8:
+        elif converter.player_money % 10 == 8:
             self.eight.draw(750, 750)
-        elif self.score % 10 == 9:
+        elif converter.player_money % 10 == 9:
             self.nine.draw(750, 750)
 
-        if int(self.score / 10) % 10 == 0:
+        if int(converter.player_money / 10) % 10 == 0:
             self.zero.draw(717, 750)
-        elif int(self.score / 10) % 10 == 1:
+        elif int(converter.player_money / 10) % 10 == 1:
             self.one.draw(717, 750)
-        elif int(self.score / 10) % 10 == 2:
+        elif int(converter.player_money / 10) % 10 == 2:
             self.two.draw(717, 750)
-        elif int(self.score / 10) % 10 == 3:
+        elif int(converter.player_money / 10) % 10 == 3:
             self.three.draw(717, 750)
-        elif int(self.score / 10) % 10 == 4:
+        elif int(converter.player_money / 10) % 10 == 4:
             self.four.draw(717, 750)
-        elif int(self.score / 10) % 10 == 5:
+        elif int(converter.player_money / 10) % 10 == 5:
             self.five.draw(717, 750)
-        elif int(self.score / 10) % 10 == 6:
+        elif int(converter.player_money / 10) % 10 == 6:
             self.six.draw(717, 750)
-        elif int(self.score / 10) % 10 == 7:
+        elif int(converter.player_money / 10) % 10 == 7:
             self.seven.draw(717, 750)
-        elif int(self.score / 10) % 10 == 8:
+        elif int(converter.player_money / 10) % 10 == 8:
             self.eight.draw(717, 750)
-        elif int(self.score / 10) % 10 == 9:
+        elif int(converter.player_money / 10) % 10 == 9:
             self.nine.draw(717, 750)
 
-        if int(self.score / 100) == 0:
+        if int(converter.player_money / 100) == 0:
             self.zero.draw(684, 750)
-        elif int(self.score / 100) == 1:
+        elif int(converter.player_money / 100) == 1:
              self.one.draw(684, 750)
-        elif int(self.score / 100) == 2:
+        elif int(converter.player_money / 100) == 2:
             self.two.draw(684, 750)
-        elif int(self.score / 100) == 3:
+        elif int(converter.player_money / 100) == 3:
             self.three.draw(684, 750)
-        elif int(self.score / 100) == 4:
+        elif int(converter.player_money / 100) == 4:
             self.four.draw(684, 750)
-        elif int(self.score / 100) == 5:
+        elif int(converter.player_money / 100) == 5:
             self.five.draw(684, 750)
-        elif int(self.score / 100) == 6:
+        elif int(converter.player_money / 100) == 6:
             self.six.draw(684, 750)
-        elif int(self.score / 100) == 7:
+        elif int(converter.player_money / 100) == 7:
             self.seven.draw(684, 750)
-        elif int(self.score / 100) == 8:
+        elif int(converter.player_money / 100) == 8:
             self.eight.draw(684, 750)
-        elif int(self.score / 100) == 9:
+        elif int(converter.player_money / 100) == 9:
             self.nine.draw(684, 750)
 
         self.jelly.draw(651, 750)
@@ -455,26 +457,26 @@ class Player_second:
         self.result_count = 0
         ######사운드#####
         self.bgm = load_music('Sound\\Stage2.mp3')
-        self.bgm.set_volume(8)
+        self.bgm.set_volume(32)
         self.bgm.repeat_play()
 
         self.jump_sound = load_wav('Sound\\jump.wav')
-        self.jump_sound.set_volume(16)
+        self.jump_sound.set_volume(64)
 
         self.slide_sound = load_wav('Sound\\slide.wav')
-        self.slide_sound.set_volume(16)
+        self.slide_sound.set_volume(64)
 
         self.giant_jump_start_sound = load_wav('Sound\\g_giantjump.wav')
-        self.giant_jump_start_sound.set_volume(16)
+        self.giant_jump_start_sound.set_volume(64)
 
         self.giant_jump_end_sound = load_wav('Sound\\g_giantland.wav')
-        self.giant_jump_end_sound.set_volume(32)
+        self.giant_jump_end_sound.set_volume(128)
 
         self.dead_sound = load_wav('Sound\\g_end.wav')
-        self.dead_sound.set_volume(32)
+        self.dead_sound.set_volume(128)
 
         self.result_sound = load_wav('Sound\\r_score.wav')
-        self.result_sound.set_volume(32)
+        self.result_sound.set_volume(128)
 
         if Player.Image_init == None:
             self.run_cookie = load_image('Image\\stage2_cookie\\cookie_run.png')
@@ -583,8 +585,8 @@ class Player_second:
 
         return self.x - 32, self. y - 43, self.x + 32, self.y + 43
 
-    def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+    #def draw_bb(self):
+        #draw_rectangle(*self.get_bb())
 
 
     def gravity(self):
@@ -648,67 +650,67 @@ class Player_second:
             else:
                 self.result_ok.draw(400 ,275)
 
-            if self.score % 10 == 0:
+            if converter.player_money % 10 == 0:
                 self.zero.rotate_draw(11, 460, 440)
-            elif self.score % 10 == 1:
+            elif converter.player_money % 10 == 1:
                 self.one.rotate_draw(11, 460, 440)
-            elif self.score % 10 == 2:
+            elif converter.player_money % 10 == 2:
                 self.two.rotate_draw(11, 460, 440)
-            elif self.score % 10 == 3:
+            elif converter.player_money % 10 == 3:
                 self.three.rotate_draw(11, 460, 440)
-            elif self.score % 10 == 4:
+            elif converter.player_money % 10 == 4:
                 self.four.rotate_draw(11, 460, 440)
-            elif self.score % 10 == 5:
+            elif converter.player_money % 10 == 5:
                 self.five.rotate_draw(11, 460, 440)
-            elif self.score % 10 == 6:
+            elif converter.player_money % 10 == 6:
                 self.six.rotate_draw(11, 460, 440)
-            elif self.score % 10 == 7:
+            elif converter.player_money % 10 == 7:
                 self.seven.rotate_draw(11, 460, 440)
-            elif self.score % 10 == 8:
+            elif converter.player_money % 10 == 8:
                 self.eight.rotate_draw(11, 460, 440)
-            elif self.score % 10 == 9:
+            elif converter.player_money % 10 == 9:
                 self.nine.rotate_draw(11, 460, 440)
 
-            if int(self.score / 10) % 10 == 0:
+            if int(converter.player_money / 10) % 10 == 0:
                 self.zero.rotate_draw(11, 400, 440)
-            elif int(self.score / 10) % 10 == 1:
+            elif int(converter.player_money / 10) % 10 == 1:
                 self.one.rotate_draw(11, 400, 440)
-            elif int(self.score / 10) % 10 == 2:
+            elif int(converter.player_money / 10) % 10 == 2:
                 self.two.rotate_draw(11, 400, 440)
-            elif int(self.score / 10) % 10 == 3:
+            elif int(converter.player_money / 10) % 10 == 3:
                 self.three.rotate_draw(11, 400, 440)
-            elif int(self.score / 10) % 10 == 4:
+            elif int(converter.player_money / 10) % 10 == 4:
                 self.four.rotate_draw(11, 400, 440)
-            elif int(self.score / 10) % 10 == 5:
+            elif int(converter.player_money / 10) % 10 == 5:
                 self.five.rotate_draw(11, 400, 440)
-            elif int(self.score / 10) % 10 == 6:
+            elif int(converter.player_money / 10) % 10 == 6:
                 self.six.rotate_draw(11, 400, 440)
-            elif int(self.score / 10) % 10 == 7:
+            elif int(converter.player_money / 10) % 10 == 7:
                 self.seven.rotate_draw(11, 400, 440)
-            elif int(self.score / 10) % 10 == 8:
+            elif int(converter.player_money / 10) % 10 == 8:
                 self.eight.rotate_draw(11, 400, 440)
-            elif int(self.score / 10) % 10 == 9:
+            elif int(converter.player_money / 10) % 10 == 9:
                 self.nine.rotate_draw(11, 400, 440)
 
-            if int(self.score / 100) == 0:
+            if int(converter.player_money / 100) == 0:
                 self.zero.rotate_draw(11, 340, 440)
-            elif int(self.score / 100) == 1:
+            elif int(converter.player_money / 100) == 1:
                 self.one.rotate_draw(11, 340, 440)
-            elif int(self.score / 100) == 2:
+            elif int(converter.player_money / 100) == 2:
                 self.two.rotate_draw(11, 340, 440)
-            elif int(self.score / 100) == 3:
+            elif int(converter.player_money / 100) == 3:
                 self.three.rotate_draw(11, 340, 440)
-            elif int(self.score / 100) == 4:
+            elif int(converter.player_money / 100) == 4:
                 self.four.rotate_draw(11, 340, 440)
-            elif int(self.score / 100) == 5:
+            elif int(converter.player_money / 100) == 5:
                 self.five.rotate_draw(11, 340, 440)
-            elif int(self.score / 100) == 6:
+            elif int(converter.player_money / 100) == 6:
                 self.six.rotate_draw(11, 340, 440)
-            elif int(self.score / 100) == 7:
+            elif int(converter.player_money / 100) == 7:
                 self.seven.rotate_draw(11, 340, 440)
-            elif int(self.score / 100) == 8:
+            elif int(converter.player_money / 100) == 8:
                 self.eight.rotate_draw(11, 340, 440)
-            elif int(self.score / 100) == 9:
+            elif int(converter.player_money / 100) == 9:
                 self.nine.rotate_draw(11, 340, 440)
             #self.bool_dead = False
 
@@ -721,67 +723,67 @@ class Player_second:
 
 
         ###score부분
-        if self.score % 10 == 0:
+        if converter.player_money % 10 == 0:
             self.zero.draw(50, 750)
-        elif self.score % 10 == 1:
+        elif converter.player_money % 10 == 1:
             self.one.draw(50, 750)
-        elif self.score % 10 == 2:
+        elif converter.player_money % 10 == 2:
             self.two.draw(50, 750)
-        elif self.score % 10 == 3:
+        elif converter.player_money % 10 == 3:
             self.three.draw(50, 750)
-        elif self.score % 10 == 4:
+        elif converter.player_money % 10 == 4:
             self.four.draw(50, 750)
-        elif self.score % 10 == 5:
+        elif converter.player_money % 10 == 5:
             self.five.draw(50, 750)
-        elif self.score % 10 == 6:
+        elif converter.player_money % 10 == 6:
             self.six.draw(50, 750)
-        elif self.score % 10 == 7:
+        elif converter.player_money % 10 == 7:
             self.seven.draw(50, 750)
-        elif self.score % 10 == 8:
+        elif converter.player_money % 10 == 8:
             self.eight.draw(50, 750)
-        elif self.score % 10 == 9:
+        elif converter.player_money % 10 == 9:
             self.nine.draw(50, 750)
 
-        if int(self.score / 10) % 10 == 0:
+        if int(converter.player_money / 10) % 10 == 0:
             self.zero.draw(50, 717)
-        elif int(self.score / 10) % 10 == 1:
+        elif int(converter.player_money / 10) % 10 == 1:
             self.one.draw(50, 717)
-        elif int(self.score / 10) % 10 == 2:
+        elif int(converter.player_money / 10) % 10 == 2:
             self.two.draw(50, 717)
-        elif int(self.score / 10) % 10 == 3:
+        elif int(converter.player_money / 10) % 10 == 3:
             self.three.draw(50, 717)
-        elif int(self.score / 10) % 10 == 4:
+        elif int(converter.player_money / 10) % 10 == 4:
             self.four.draw(50, 717)
-        elif int(self.score / 10) % 10 == 5:
+        elif int(converter.player_money / 10) % 10 == 5:
             self.five.draw(50, 717)
-        elif int(self.score / 10) % 10 == 6:
+        elif int(converter.player_money / 10) % 10 == 6:
             self.six.draw(50, 717)
-        elif int(self.score / 10) % 10 == 7:
+        elif int(converter.player_money / 10) % 10 == 7:
             self.seven.draw(50, 717)
-        elif int(self.score / 10) % 10 == 8:
+        elif int(converter.player_money / 10) % 10 == 8:
             self.eight.draw(50, 717)
-        elif int(self.score / 10) % 10 == 9:
+        elif int(converter.player_money / 10) % 10 == 9:
             self.nine.draw(50, 717)
 
-        if int(self.score / 100) == 0:
+        if int(converter.player_money / 100) == 0:
             self.zero.draw(50, 684)
-        elif int(self.score / 100) == 1:
+        elif int(converter.player_money / 100) == 1:
              self.one.draw(50, 684)
-        elif int(self.score / 100) == 2:
+        elif int(converter.player_money / 100) == 2:
             self.two.draw(50, 684)
-        elif int(self.score / 100) == 3:
+        elif int(converter.player_money / 100) == 3:
             self.three.draw(50, 684)
-        elif int(self.score / 100) == 4:
+        elif int(converter.player_money / 100) == 4:
             self.four.draw(50, 684)
-        elif int(self.score / 100) == 5:
+        elif int(converter.player_money / 100) == 5:
             self.five.draw(50, 684)
-        elif int(self.score / 100) == 6:
+        elif int(converter.player_money / 100) == 6:
             self.six.draw(50, 684)
-        elif int(self.score / 100) == 7:
+        elif int(converter.player_money / 100) == 7:
             self.seven.draw(50, 684)
-        elif int(self.score / 100) == 8:
+        elif int(converter.player_money / 100) == 8:
             self.eight.draw(50, 684)
-        elif int(self.score / 100) == 9:
+        elif int(converter.player_money / 100) == 9:
             self.nine.draw(50, 684)
 
         self.jelly.draw(50, 651)
@@ -874,26 +876,26 @@ class Player_third:
         self.result_count = 0
         ######사운드#####
         self.bgm = load_music('Sound\\Stage3.mp3')
-        self.bgm.set_volume(8)
+        self.bgm.set_volume(32)
         self.bgm.repeat_play()
 
         self.jump_sound = load_wav('Sound\\jump.wav')
-        self.jump_sound.set_volume(16)
+        self.jump_sound.set_volume(64)
 
         self.slide_sound = load_wav('Sound\\slide.wav')
-        self.slide_sound.set_volume(16)
+        self.slide_sound.set_volume(64)
 
         self.giant_jump_start_sound = load_wav('Sound\\g_giantjump.wav')
-        self.giant_jump_start_sound.set_volume(16)
+        self.giant_jump_start_sound.set_volume(64)
 
         self.giant_jump_end_sound = load_wav('Sound\\g_giantland.wav')
-        self.giant_jump_end_sound.set_volume(32)
+        self.giant_jump_end_sound.set_volume(128)
 
         self.dead_sound = load_wav('Sound\\g_end.wav')
-        self.dead_sound.set_volume(32)
+        self.dead_sound.set_volume(128)
 
         self.result_sound = load_wav('Sound\\r_score.wav')
-        self.result_sound.set_volume(32)
+        self.result_sound.set_volume(128)
 
         if Player.Image_init == None:
             self.run_cookie = load_image('Image\\stage3_cookie\\cookie_run.png')
@@ -1012,8 +1014,8 @@ class Player_third:
 
         return self.x - 32, self. y - 43, self.x + 32, self.y + 43
 
-    def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+    #def draw_bb(self):
+        #draw_rectangle(*self.get_bb())
 
 
     def gravity(self):
@@ -1082,67 +1084,67 @@ class Player_third:
             else:
                 self.result_ok.draw(400 ,275)
 
-            if self.score % 10 == 0:
+            if converter.player_money % 10 == 0:
                 self.zero.rotate_draw(22, 460, 440)
-            elif self.score % 10 == 1:
+            elif converter.player_money % 10 == 1:
                 self.one.rotate_draw(22, 460, 440)
-            elif self.score % 10 == 2:
+            elif converter.player_money % 10 == 2:
                 self.two.rotate_draw(22, 460, 440)
-            elif self.score % 10 == 3:
+            elif converter.player_money % 10 == 3:
                 self.three.rotate_draw(22, 460, 440)
-            elif self.score % 10 == 4:
+            elif converter.player_money % 10 == 4:
                 self.four.rotate_draw(22, 460, 440)
-            elif self.score % 10 == 5:
+            elif converter.player_money % 10 == 5:
                 self.five.rotate_draw(22, 460, 440)
-            elif self.score % 10 == 6:
+            elif converter.player_money % 10 == 6:
                 self.six.rotate_draw(22, 460, 440)
-            elif self.score % 10 == 7:
+            elif converter.player_money % 10 == 7:
                 self.seven.rotate_draw(22, 460, 440)
-            elif self.score % 10 == 8:
+            elif converter.player_money % 10 == 8:
                 self.eight.rotate_draw(22, 460, 440)
-            elif self.score % 10 == 9:
+            elif converter.player_money % 10 == 9:
                 self.nine.rotate_draw(22, 460, 440)
 
-            if int(self.score / 10) % 10 == 0:
+            if int(converter.player_money / 10) % 10 == 0:
                 self.zero.rotate_draw(22, 400, 440)
-            elif int(self.score / 10) % 10 == 1:
+            elif int(converter.player_money / 10) % 10 == 1:
                 self.one.rotate_draw(22, 400, 440)
-            elif int(self.score / 10) % 10 == 2:
+            elif int(converter.player_money / 10) % 10 == 2:
                 self.two.rotate_draw(22, 400, 440)
-            elif int(self.score / 10) % 10 == 3:
+            elif int(converter.player_money / 10) % 10 == 3:
                 self.three.rotate_draw(22, 400, 440)
-            elif int(self.score / 10) % 10 == 4:
+            elif int(converter.player_money / 10) % 10 == 4:
                 self.four.rotate_draw(22, 400, 440)
-            elif int(self.score / 10) % 10 == 5:
+            elif int(converter.player_money / 10) % 10 == 5:
                 self.five.rotate_draw(22, 400, 440)
-            elif int(self.score / 10) % 10 == 6:
+            elif int(converter.player_money / 10) % 10 == 6:
                 self.six.rotate_draw(22, 400, 440)
-            elif int(self.score / 10) % 10 == 7:
+            elif int(converter.player_money / 10) % 10 == 7:
                 self.seven.rotate_draw(22, 400, 440)
-            elif int(self.score / 10) % 10 == 8:
+            elif int(converter.player_money / 10) % 10 == 8:
                 self.eight.rotate_draw(22, 400, 440)
-            elif int(self.score / 10) % 10 == 9:
+            elif int(converter.player_money / 10) % 10 == 9:
                 self.nine.rotate_draw(22, 400, 440)
 
-            if int(self.score / 100) == 0:
+            if int(converter.player_money / 100) == 0:
                 self.zero.rotate_draw(22, 340, 440)
-            elif int(self.score / 100) == 1:
+            elif int(converter.player_money / 100) == 1:
                 self.one.rotate_draw(22, 340, 440)
-            elif int(self.score / 100) == 2:
+            elif int(converter.player_money / 100) == 2:
                 self.two.rotate_draw(22, 340, 440)
-            elif int(self.score / 100) == 3:
+            elif int(converter.player_money / 100) == 3:
                 self.three.rotate_draw(22, 340, 440)
-            elif int(self.score / 100) == 4:
+            elif int(converter.player_money / 100) == 4:
                 self.four.rotate_draw(22, 340, 440)
-            elif int(self.score / 100) == 5:
+            elif int(converter.player_money / 100) == 5:
                 self.five.rotate_draw(22, 340, 440)
-            elif int(self.score / 100) == 6:
+            elif int(converter.player_money / 100) == 6:
                 self.six.rotate_draw(22, 340, 440)
-            elif int(self.score / 100) == 7:
+            elif int(converter.player_money / 100) == 7:
                 self.seven.rotate_draw(22, 340, 440)
-            elif int(self.score / 100) == 8:
+            elif int(converter.player_money / 100) == 8:
                 self.eight.rotate_draw(22, 340, 440)
-            elif int(self.score / 100) == 9:
+            elif int(converter.player_money / 100) == 9:
                 self.nine.rotate_draw(22, 340, 440)
             #self.bool_dead = False
 
@@ -1155,67 +1157,67 @@ class Player_third:
 
 
         ###score부분
-        if self.score % 10 == 0:
+        if converter.player_money % 10 == 0:
             self.zero.draw(50, 50)
-        elif self.score % 10 == 1:
+        elif converter.player_money % 10 == 1:
             self.one.draw(50, 50)
-        elif self.score % 10 == 2:
+        elif converter.player_money % 10 == 2:
             self.two.draw(50, 50)
-        elif self.score % 10 == 3:
+        elif converter.player_money % 10 == 3:
             self.three.draw(50, 50)
-        elif self.score % 10 == 4:
+        elif converter.player_money % 10 == 4:
             self.four.draw(50, 50)
-        elif self.score % 10 == 5:
+        elif converter.player_money % 10 == 5:
             self.five.draw(50, 50)
-        elif self.score % 10 == 6:
+        elif converter.player_money % 10 == 6:
             self.six.draw(50, 50)
-        elif self.score % 10 == 7:
+        elif converter.player_money % 10 == 7:
             self.seven.draw(50, 50)
-        elif self.score % 10 == 8:
+        elif converter.player_money % 10 == 8:
             self.eight.draw(50, 50)
-        elif self.score % 10 == 9:
+        elif converter.player_money % 10 == 9:
             self.nine.draw(50, 50)
 
-        if int(self.score / 10) % 10 == 0:
+        if int(converter.player_money / 10) % 10 == 0:
             self.zero.draw(83, 50)
-        elif int(self.score / 10) % 10 == 1:
+        elif int(converter.player_money / 10) % 10 == 1:
             self.one.draw(83, 50)
-        elif int(self.score / 10) % 10 == 2:
+        elif int(converter.player_money / 10) % 10 == 2:
             self.two.draw(83, 50)
-        elif int(self.score / 10) % 10 == 3:
+        elif int(converter.player_money / 10) % 10 == 3:
             self.three.draw(83, 50)
-        elif int(self.score / 10) % 10 == 4:
+        elif int(converter.player_money / 10) % 10 == 4:
             self.four.draw(83, 50)
-        elif int(self.score / 10) % 10 == 5:
+        elif int(converter.player_money / 10) % 10 == 5:
             self.five.draw(83, 50)
-        elif int(self.score / 10) % 10 == 6:
+        elif int(converter.player_money / 10) % 10 == 6:
             self.six.draw(83, 50)
-        elif int(self.score / 10) % 10 == 7:
+        elif int(converter.player_money / 10) % 10 == 7:
             self.seven.draw(83, 50)
-        elif int(self.score / 10) % 10 == 8:
+        elif int(converter.player_money / 10) % 10 == 8:
             self.eight.draw(83, 50)
-        elif int(self.score / 10) % 10 == 9:
+        elif int(converter.player_money / 10) % 10 == 9:
             self.nine.draw(83, 50)
 
-        if int(self.score / 100) == 0:
+        if int(converter.player_money / 100) == 0:
             self.zero.draw(116, 50)
-        elif int(self.score / 100) == 1:
+        elif int(converter.player_money / 100) == 1:
              self.one.draw(116, 50)
-        elif int(self.score / 100) == 2:
+        elif int(converter.player_money / 100) == 2:
             self.two.draw(116, 50)
-        elif int(self.score / 100) == 3:
+        elif int(converter.player_money / 100) == 3:
             self.three.draw(116, 50)
-        elif int(self.score / 100) == 4:
+        elif int(converter.player_money / 100) == 4:
             self.four.draw(116, 50)
-        elif int(self.score / 100) == 5:
+        elif int(converter.player_money / 100) == 5:
             self.five.draw(116, 50)
-        elif int(self.score / 100) == 6:
+        elif int(converter.player_money / 100) == 6:
             self.six.draw(116, 50)
-        elif int(self.score / 100) == 7:
+        elif int(converter.player_money / 100) == 7:
             self.seven.draw(116, 50)
-        elif int(self.score / 100) == 8:
+        elif int(converter.player_money / 100) == 8:
             self.eight.draw(116, 50)
-        elif int(self.score / 100) == 9:
+        elif int(converter.player_money / 100) == 9:
             self.nine.draw(116, 50)
 
         self.jelly.draw(149, 50)
@@ -1306,26 +1308,26 @@ class Player_four:
         self.result_count = 0
         ######사운드#####
         self.bgm = load_music('Sound\\Stage4.mp3')
-        self.bgm.set_volume(8)
+        self.bgm.set_volume(32)
         self.bgm.repeat_play()
 
         self.jump_sound = load_wav('Sound\\jump.wav')
-        self.jump_sound.set_volume(16)
+        self.jump_sound.set_volume(64)
 
         self.slide_sound = load_wav('Sound\\slide.wav')
-        self.slide_sound.set_volume(16)
+        self.slide_sound.set_volume(64)
 
         self.giant_jump_start_sound = load_wav('Sound\\g_giantjump.wav')
-        self.giant_jump_start_sound.set_volume(16)
+        self.giant_jump_start_sound.set_volume(64)
 
         self.giant_jump_end_sound = load_wav('Sound\\g_giantland.wav')
-        self.giant_jump_end_sound.set_volume(32)
+        self.giant_jump_end_sound.set_volume(128)
 
         self.dead_sound = load_wav('Sound\\g_end.wav')
-        self.dead_sound.set_volume(32)
+        self.dead_sound.set_volume(128)
 
         self.result_sound = load_wav('Sound\\r_score.wav')
-        self.result_sound.set_volume(32)
+        self.result_sound.set_volume(128)
 
         if Player.Image_init == None:
             self.run_cookie = load_image('Image\\stage4_cookie\\cookie_run.png')
@@ -1432,8 +1434,8 @@ class Player_four:
 
         return self.x - 32, self. y - 43, self.x + 32, self.y + 43
 
-    def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+    #def draw_bb(self):
+        #draw_rectangle(*self.get_bb())
 
 
     def gravity(self):
@@ -1497,67 +1499,67 @@ class Player_four:
             else:
                 self.result_ok.draw(400 ,275)
 
-            if self.score % 10 == 0:
+            if converter.player_money % 10 == 0:
                 self.zero.rotate_draw(33, 460, 440)
-            elif self.score % 10 == 1:
+            elif converter.player_money % 10 == 1:
                 self.one.rotate_draw(33, 460, 440)
-            elif self.score % 10 == 2:
+            elif converter.player_money % 10 == 2:
                 self.two.rotate_draw(33, 460, 440)
-            elif self.score % 10 == 3:
+            elif converter.player_money % 10 == 3:
                 self.three.rotate_draw(33, 460, 440)
-            elif self.score % 10 == 4:
+            elif converter.player_money % 10 == 4:
                 self.four.rotate_draw(33, 460, 440)
-            elif self.score % 10 == 5:
+            elif converter.player_money % 10 == 5:
                 self.five.rotate_draw(33, 460, 440)
-            elif self.score % 10 == 6:
+            elif converter.player_money % 10 == 6:
                 self.six.rotate_draw(33, 460, 440)
-            elif self.score % 10 == 7:
+            elif converter.player_money % 10 == 7:
                 self.seven.rotate_draw(33, 460, 440)
-            elif self.score % 10 == 8:
+            elif converter.player_money % 10 == 8:
                 self.eight.rotate_draw(33, 460, 440)
-            elif self.score % 10 == 9:
+            elif converter.player_money % 10 == 9:
                 self.nine.rotate_draw(33, 460, 440)
 
-            if int(self.score / 10) % 10 == 0:
+            if int(converter.player_money / 10) % 10 == 0:
                 self.zero.rotate_draw(33, 400, 440)
-            elif int(self.score / 10) % 10 == 1:
+            elif int(converter.player_money / 10) % 10 == 1:
                 self.one.rotate_draw(33, 400, 440)
-            elif int(self.score / 10) % 10 == 2:
+            elif int(converter.player_money / 10) % 10 == 2:
                 self.two.rotate_draw(33, 400, 440)
-            elif int(self.score / 10) % 10 == 3:
+            elif int(converter.player_money / 10) % 10 == 3:
                 self.three.rotate_draw(33, 400, 440)
-            elif int(self.score / 10) % 10 == 4:
+            elif int(converter.player_money / 10) % 10 == 4:
                 self.four.rotate_draw(33, 400, 440)
-            elif int(self.score / 10) % 10 == 5:
+            elif int(converter.player_money / 10) % 10 == 5:
                 self.five.rotate_draw(33, 400, 440)
-            elif int(self.score / 10) % 10 == 6:
+            elif int(converter.player_money / 10) % 10 == 6:
                 self.six.rotate_draw(33, 400, 440)
-            elif int(self.score / 10) % 10 == 7:
+            elif int(converter.player_money / 10) % 10 == 7:
                 self.seven.rotate_draw(33, 400, 440)
-            elif int(self.score / 10) % 10 == 8:
+            elif int(converter.player_money / 10) % 10 == 8:
                 self.eight.rotate_draw(33, 400, 440)
-            elif int(self.score / 10) % 10 == 9:
+            elif int(converter.player_money / 10) % 10 == 9:
                 self.nine.rotate_draw(33, 400, 440)
 
-            if int(self.score / 100) == 0:
+            if int(converter.player_money / 100) == 0:
                 self.zero.rotate_draw(33, 340, 440)
-            elif int(self.score / 100) == 1:
+            elif int(converter.player_money / 100) == 1:
                 self.one.rotate_draw(33, 340, 440)
-            elif int(self.score / 100) == 2:
+            elif int(converter.player_money / 100) == 2:
                 self.two.rotate_draw(33, 340, 440)
-            elif int(self.score / 100) == 3:
+            elif int(converter.player_money / 100) == 3:
                 self.three.rotate_draw(33, 340, 440)
-            elif int(self.score / 100) == 4:
+            elif int(converter.player_money / 100) == 4:
                 self.four.rotate_draw(33, 340, 440)
-            elif int(self.score / 100) == 5:
+            elif int(converter.player_money / 100) == 5:
                 self.five.rotate_draw(33, 340, 440)
-            elif int(self.score / 100) == 6:
+            elif int(converter.player_money / 100) == 6:
                 self.six.rotate_draw(33, 340, 440)
-            elif int(self.score / 100) == 7:
+            elif int(converter.player_money / 100) == 7:
                 self.seven.rotate_draw(33, 340, 440)
-            elif int(self.score / 100) == 8:
+            elif int(converter.player_money / 100) == 8:
                 self.eight.rotate_draw(33, 340, 440)
-            elif int(self.score / 100) == 9:
+            elif int(converter.player_money / 100) == 9:
                 self.nine.rotate_draw(33, 340, 440)
             #self.bool_dead = False
 
@@ -1570,67 +1572,67 @@ class Player_four:
 
 
         ###score부분
-        if self.score % 10 == 0:
+        if converter.player_money % 10 == 0:
             self.zero.draw(750, 50)
-        elif self.score % 10 == 1:
+        elif converter.player_money % 10 == 1:
             self.one.draw(750, 50)
-        elif self.score % 10 == 2:
+        elif converter.player_money % 10 == 2:
             self.two.draw(750, 50)
-        elif self.score % 10 == 3:
+        elif converter.player_money % 10 == 3:
             self.three.draw(750, 50)
-        elif self.score % 10 == 4:
+        elif converter.player_money % 10 == 4:
             self.four.draw(750, 50)
-        elif self.score % 10 == 5:
+        elif converter.player_money % 10 == 5:
             self.five.draw(750, 50)
-        elif self.score % 10 == 6:
+        elif converter.player_money % 10 == 6:
             self.six.draw(750, 50)
-        elif self.score % 10 == 7:
+        elif converter.player_money % 10 == 7:
             self.seven.draw(750, 50)
-        elif self.score % 10 == 8:
+        elif converter.player_money % 10 == 8:
             self.eight.draw(750, 50)
-        elif self.score % 10 == 9:
+        elif converter.player_money % 10 == 9:
             self.nine.draw(750, 50)
 
-        if int(self.score / 10) % 10 == 0:
+        if int(converter.player_money / 10) % 10 == 0:
             self.zero.draw(750, 83)
-        elif int(self.score / 10) % 10 == 1:
+        elif int(converter.player_money / 10) % 10 == 1:
             self.one.draw(750, 83)
-        elif int(self.score / 10) % 10 == 2:
+        elif int(converter.player_money / 10) % 10 == 2:
             self.two.draw(750, 83)
-        elif int(self.score / 10) % 10 == 3:
+        elif int(converter.player_money / 10) % 10 == 3:
             self.three.draw(750, 83)
-        elif int(self.score / 10) % 10 == 4:
+        elif int(converter.player_money / 10) % 10 == 4:
             self.four.draw(750, 83)
-        elif int(self.score / 10) % 10 == 5:
+        elif int(converter.player_money / 10) % 10 == 5:
             self.five.draw(750, 83)
-        elif int(self.score / 10) % 10 == 6:
+        elif int(converter.player_money / 10) % 10 == 6:
             self.six.draw(750, 83)
-        elif int(self.score / 10) % 10 == 7:
+        elif int(converter.player_money / 10) % 10 == 7:
             self.seven.draw(750, 83)
-        elif int(self.score / 10) % 10 == 8:
+        elif int(converter.player_money / 10) % 10 == 8:
             self.eight.draw(750, 83)
-        elif int(self.score / 10) % 10 == 9:
+        elif int(converter.player_money / 10) % 10 == 9:
             self.nine.draw(750, 83)
 
-        if int(self.score / 100) == 0:
+        if int(converter.player_money / 100) == 0:
             self.zero.draw(750, 116)
-        elif int(self.score / 100) == 1:
+        elif int(converter.player_money / 100) == 1:
              self.one.draw(750, 116)
-        elif int(self.score / 100) == 2:
+        elif int(converter.player_money / 100) == 2:
             self.two.draw(750, 116)
-        elif int(self.score / 100) == 3:
+        elif int(converter.player_money / 100) == 3:
             self.three.draw(750, 116)
-        elif int(self.score / 100) == 4:
+        elif int(converter.player_money / 100) == 4:
             self.four.draw(750, 116)
-        elif int(self.score / 100) == 5:
+        elif int(converter.player_money / 100) == 5:
             self.five.draw(750, 116)
-        elif int(self.score / 100) == 6:
+        elif int(converter.player_money / 100) == 6:
             self.six.draw(750, 116)
-        elif int(self.score / 100) == 7:
+        elif int(converter.player_money / 100) == 7:
             self.seven.draw(750, 116)
-        elif int(self.score / 100) == 8:
+        elif int(converter.player_money / 100) == 8:
             self.eight.draw(750, 116)
-        elif int(self.score / 100) == 9:
+        elif int(converter.player_money / 100) == 9:
             self.nine.draw(750, 116)
 
         self.jelly.draw(750, 149)

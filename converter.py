@@ -8,14 +8,18 @@ init = None
 player_hpsize = 0
 player_score = 0
 player_hpframe = 0
+lobby_money = 0
+player_money = 0
+
 
 def enter():
-    global player_hpsize, player_score, player_hpframe
+    global player_hpsize, player_score, player_hpframe, player_money, lobby_money
     if init == None:
         player_hpsize = 0
         player_score = 0
         player_hpframe = 0
-
+        lobby_money = 0
+        player_money = 0
 def exit():
     pass
 

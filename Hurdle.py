@@ -297,8 +297,8 @@ class Hurdle:
         return self.x - self.width/2, self. y - self.height/2, self.x + self.width/2, self.y + self.height/2
            #return self.x + 50 , self.y + 50, self.x - 50, self.y - 50
 
-    def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+    #def draw_bb(self):
+        #draw_rectangle(*self.get_bb())
 
     def draw(self):
         if self.Hurdle_Start1 == True:
@@ -399,8 +399,8 @@ class Hurdle2:
             return self.x - self.width/2, self. y - self.height/2, self.x + self.width/2, self.y + self.height/2
             #return self.x + 50 , self.y + 50, self.x - 50, self.y - 50
 
-    def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+    #def draw_bb(self):
+        #draw_rectangle(*self.get_bb())
 
 class Hurdle3:
     global hurdle_data3
@@ -492,8 +492,8 @@ class Hurdle3:
             return self.x - self.width/2, self. y - self.height/2, self.x + self.width/2, self.y + self.height/2
             #return self.x + 50 , self.y + 50, self.x - 50, self.y - 50
 
-    def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+    #def draw_bb(self):
+        #draw_rectangle(*self.get_bb())
 
 class Hurdle4:
     global hurdle_dat4
@@ -588,8 +588,8 @@ class Hurdle4:
         return self.x - self.width/2, self. y - self.height/2, self.x + self.width/2, self.y + self.height/2
            #return self.x + 50 , self.y + 50, self.x - 50, self.y - 50
 
-    def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+    #def draw_bb(self):
+        #draw_rectangle(*self.get_bb())
 
 class Hurdle5:
     global hurdle_dat5
@@ -684,8 +684,8 @@ class Hurdle5:
         return self.x - self.width/2, self. y - self.height/2, self.x + self.width/2, self.y + self.height/2
            #return self.x + 50 , self.y + 50, self.x - 50, self.y - 50
 
-    def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+    #def draw_bb(self):
+        #draw_rectangle(*self.get_bb())
 
 class Hurdle_second:
     global hurdle_data
@@ -770,8 +770,8 @@ class Hurdle_second:
         return self.x - self.width/2, self. y - self.height/2, self.x + self.width/2, self.y + self.height/2
            #return self.x + 50 , self.y + 50, self.x - 50, self.y - 50
 
-    def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+    #def draw_bb(self):
+        #draw_rectangle(*self.get_bb())
 
     def draw(self):
         if self.Hurdle_Start2_1 == True:
@@ -864,8 +864,8 @@ class Hurdle_second2:
         return self.x - self.width/2, self. y - self.height/2, self.x + self.width/2, self.y + self.height/2
            #return self.x + 50 , self.y + 50, self.x - 50, self.y - 50
 
-    def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+    #def draw_bb(self):
+        #draw_rectangle(*self.get_bb())
 
     def draw(self):
         if self.Hurdle_Start2_2 == True:
@@ -957,8 +957,8 @@ class Hurdle_second3:
         return self.x - self.width/2, self. y - self.height/2, self.x + self.width/2, self.y + self.height/2
            #return self.x + 50 , self.y + 50, self.x - 50, self.y - 50
 
-    def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+    #def draw_bb(self):
+        #draw_rectangle(*self.get_bb())
 
     def draw(self):
         if self.Hurdle_Start2_3 == True:
@@ -1050,8 +1050,8 @@ class Hurdle_second4:
         return self.x - self.width/2, self. y - self.height/2, self.x + self.width/2, self.y + self.height/2
            #return self.x + 50 , self.y + 50, self.x - 50, self.y - 50
 
-    def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+    #def draw_bb(self):
+        #draw_rectangle(*self.get_bb())
 
     def draw(self):
         if self.Hurdle_Start2_4 == True:
@@ -1146,8 +1146,8 @@ class Hurdle_second5:
         return self.x - self.width/2, self. y - self.height/2, self.x + self.width/2, self.y + self.height/2
            #return self.x + 50 , self.y + 50, self.x - 50, self.y - 50
 
-    def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+    #def draw_bb(self):
+        #draw_rectangle(*self.get_bb())
 
     def draw(self):
         if self.Hurdle_Start2_5 == True:
@@ -1247,8 +1247,8 @@ class Hurdle_third:
         return self.x - self.width/2, self. y - self.height/2, self.x + self.width/2, self.y + self.height/2
            #return self.x + 50 , self.y + 50, self.x - 50, self.y - 50
 
-    def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+    #def draw_bb(self):
+        #draw_rectangle(*self.get_bb())
 
     def draw(self):
         if self.Hurdle_Start3_1 == True:
@@ -1345,8 +1345,8 @@ class Hurdle_third2:
         return self.x - self.width/2, self. y - self.height/2, self.x + self.width/2, self.y + self.height/2
            #return self.x + 50 , self.y + 50, self.x - 50, self.y - 50
 
-    def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+    #def draw_bb(self):
+        #draw_rectangle(*self.get_bb())
 
     def draw(self):
         if self.Hurdle_Start3_2 == True:
@@ -1448,8 +1448,8 @@ class Hurdle_third3:
         return self.x - self.width/2, self. y - self.height/2, self.x + self.width/2, self.y + self.height/2
            #return self.x + 50 , self.y + 50, self.x - 50, self.y - 50
 
-    def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+    #def draw_bb(self):
+        #draw_rectangle(*self.get_bb())
 
     def draw(self):
         if self.Hurdle_Start3_3 == True:
@@ -1550,8 +1550,8 @@ class Hurdle_third4:
         return self.x - self.width/2, self. y - self.height/2, self.x + self.width/2, self.y + self.height/2
            #return self.x + 50 , self.y + 50, self.x - 50, self.y - 50
 
-    def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+    #def draw_bb(self):
+        #draw_rectangle(*self.get_bb())
 
     def draw(self):
         if self.Hurdle_Start3_4 == True:
@@ -1652,8 +1652,8 @@ class Hurdle_third5:
         return self.x - self.width/2, self. y - self.height/2, self.x + self.width/2, self.y + self.height/2
            #return self.x + 50 , self.y + 50, self.x - 50, self.y - 50
 
-    def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+    #def draw_bb(self):
+        #draw_rectangle(*self.get_bb())
 
     def draw(self):
         if self.Hurdle_Start3_5 == True:
@@ -1756,8 +1756,8 @@ class Hurdle_four:
         return self.x - self.width/2, self. y - self.height/2, self.x + self.width/2, self.y + self.height/2
            #return self.x + 50 , self.y + 50, self.x - 50, self.y - 50
 
-    def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+    #def draw_bb(self):
+        #draw_rectangle(*self.get_bb())
 
     def draw(self):
         if self.Hurdle_Start4_1 == True:
@@ -1858,8 +1858,8 @@ class Hurdle_four2:
         return self.x - self.width/2, self. y - self.height/2, self.x + self.width/2, self.y + self.height/2
            #return self.x + 50 , self.y + 50, self.x - 50, self.y - 50
 
-    def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+    #def draw_bb(self):
+        #draw_rectangle(*self.get_bb())
 
     def draw(self):
         if self.Hurdle_Start4_2 == True:
@@ -1958,8 +1958,8 @@ class Hurdle_four3:
         return self.x - self.width/2, self. y - self.height/2, self.x + self.width/2, self.y + self.height/2
            #return self.x + 50 , self.y + 50, self.x - 50, self.y - 50
 
-    def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+    #def draw_bb(self):
+        #draw_rectangle(*self.get_bb())
 
     def draw(self):
         if self.Hurdle_Start4_3 == True:
@@ -2058,8 +2058,8 @@ class Hurdle_four4:
         return self.x - self.width/2, self. y - self.height/2, self.x + self.width/2, self.y + self.height/2
            #return self.x + 50 , self.y + 50, self.x - 50, self.y - 50
 
-    def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+    #def draw_bb(self):
+        #draw_rectangle(*self.get_bb())
 
     def draw(self):
         if self.Hurdle_Start4_4 == True:
@@ -2160,8 +2160,8 @@ class Hurdle_four5:
         return self.x - self.width/2, self. y - self.height/2, self.x + self.width/2, self.y + self.height/2
            #return self.x + 50 , self.y + 50, self.x - 50, self.y - 50
 
-    def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+    #def draw_bb(self):
+        #draw_rectangle(*self.get_bb())
 
     def draw(self):
         if self.Hurdle_Start4_5 == True:

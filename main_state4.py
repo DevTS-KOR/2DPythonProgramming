@@ -66,27 +66,27 @@ def enter():
     #player.bgm.repeat_play()
     if gaint_sound == None:
         gaint_sound = load_wav('Sound\\i_giant.wav')
-        gaint_sound.set_volume(32)
+        gaint_sound.set_volume(128)
 
     if collid_sound == None:
         collid_sound = load_wav('Sound\\collide.wav')
-        collid_sound.set_volume(16)
+        collid_sound.set_volume(64)
 
     if jelly_sound == None:
         jelly_sound = load_wav('Sound\\g_jelly.wav')
-        jelly_sound.set_volume(8)
+        jelly_sound.set_volume(32)
 
     if big_collid_sound == None:
         big_collid_sound = load_wav('Sound\\big_hit.wav')
-        big_collid_sound.set_volume(32)
+        big_collid_sound.set_volume(128)
 
     if hp_sound == None:
         hp_sound = load_wav('Sound\\i_large_energy.wav')
-        hp_sound.set_volume(32)
+        hp_sound.set_volume(128)
 
     if result_ok_sound == None:
         result_ok_sound = load_wav('Sound\\ui_2.wav')
-        result_ok_sound.set_volume(32)
+        result_ok_sound.set_volume(128)
 
     #for i in range(2):          # 장애물 종류
     #    for j in range(3):      # 물체 개수
@@ -269,7 +269,7 @@ def update():
                     #print(frame_time)
                 elif i.arr['dir'] == 'Image\\item_jelly4.png':
                     jelly_sound.play()
-                    player.score += 1
+                    converter.player_money += 1
                     hurdle.remove(i)
                 elif i.arr['dir'] == 'Image\\hp_jelly4.png':
                     hp_sound.play()
@@ -291,7 +291,7 @@ def update():
                     i.x += 800
                     if i.arr['dir'] == 'Image\\item_jelly2.png':
                         jelly_sound.play()
-                        player.score += 1
+                        converter.player_money += 1
                         hurdle.remove(i)
                     else:
                         big_collid_sound.play()
@@ -321,11 +321,11 @@ def draw():
 
     for i in hurdle:
         i.draw()
-        i.draw_bb()
+        #i.draw_bb()
 
     #hurdle.draw_bb()
     player.draw()
-    player.draw_bb()
+    #player.draw_bb()
     pet.draw(player.x, player.y, player.state)
     update_canvas()
     #delay(0.03)

@@ -1,6 +1,7 @@
 import game_framework
 import main_state
 import shop
+import converter
 from pico2d import *
 
 
@@ -22,6 +23,7 @@ go_shop_click = False
 x, y = 0, 0
 score = 0
 sum_score = 0
+all_score = 0
 
 
 one = None
@@ -39,10 +41,10 @@ zero = None
 def enter():
     #print(1)
     global background, game_start, gmae_start_click, pet, pet_click, chestnut, dog, wafer, bgm, go_shop
-    global one, two, three, four , five, six, seven, eight, nine, zero, score, sum_score
+    global one, two, three, four , five, six, seven, eight, nine, zero, score, sum_score, all_score
 
-    print(sum_score)
-    sum_score = score - shop.buy_score
+    converter.lobby_money += converter.player_money
+    converter.player_money = 0
 
     background = load_image('Image\\Lobby\\lobby_background2.png')
     game_start = load_image('Image\\Lobby\\game_start_button.png')
@@ -146,67 +148,67 @@ def draw():
         bgm_re = True
         wafer.draw(550, 410)
 
-    if sum_score % 10 == 0:
+    if converter.lobby_money % 10 == 0:
         zero.draw(385, 600)
-    elif sum_score % 10 == 1:
+    elif converter.lobby_money % 10 == 1:
         one.draw(385, 600)
-    elif sum_score % 10 == 2:
+    elif converter.lobby_money % 10 == 2:
         two.draw(385, 600)
-    elif sum_score % 10 == 3:
+    elif converter.lobby_money % 10 == 3:
         three.draw(385, 600)
-    elif sum_score % 10 == 4:
+    elif converter.lobby_money % 10 == 4:
         four.draw(385, 600)
-    elif sum_score % 10 == 5:
+    elif converter.lobby_money % 10 == 5:
         five.draw(385, 600)
-    elif sum_score % 10 == 6:
+    elif converter.lobby_money % 10 == 6:
         six.draw(385, 600)
-    elif sum_score % 10 == 7:
+    elif converter.lobby_money % 10 == 7:
         seven.draw(385, 600)
-    elif sum_score % 10 == 8:
+    elif converter.lobby_money % 10 == 8:
         eight.draw(385, 600)
-    elif sum_score % 10 == 9:
+    elif converter.lobby_money % 10 == 9:
         nine.draw(385, 600)
 
-    if int(sum_score / 10) % 10 == 0:
+    if int(converter.lobby_money / 10) % 10 == 0:
         zero.draw(355, 600)
-    elif int(sum_score / 10) % 10 == 1:
+    elif int(converter.lobby_money / 10) % 10 == 1:
         one.draw(355, 600)
-    elif int(sum_score / 10) % 10 == 2:
+    elif int(converter.lobby_money / 10) % 10 == 2:
          two.draw(355, 600)
-    elif int(sum_score / 10) % 10 == 3:
+    elif int(converter.lobby_money / 10) % 10 == 3:
         three.draw(355, 600)
-    elif int(sum_score / 10) % 10 == 4:
+    elif int(converter.lobby_money / 10) % 10 == 4:
         four.draw(355, 600)
-    elif int(sum_score / 10) % 10 == 5:
+    elif int(converter.lobby_money / 10) % 10 == 5:
         five.draw(355, 600)
-    elif int(sum_score / 10) % 10 == 6:
+    elif int(converter.lobby_money / 10) % 10 == 6:
         six.draw(355, 600)
-    elif int(sum_score / 10) % 10 == 7:
+    elif int(converter.lobby_money / 10) % 10 == 7:
         seven.draw(355, 600)
-    elif int(sum_score / 10) % 10 == 8:
+    elif int(converter.lobby_money / 10) % 10 == 8:
         eight.draw(355, 600)
-    elif int(sum_score / 10) % 10 == 9:
+    elif int(converter.lobby_money / 10) % 10 == 9:
         nine.draw(355, 600)
 
-    if int(sum_score / 100) == 0:
+    if int(converter.lobby_money / 100) == 0:
         zero.draw(325, 600)
-    elif int(sum_score / 100) == 1:
+    elif int(converter.lobby_money / 100) == 1:
         one.draw(325, 600)
-    elif int(sum_score / 100) == 2:
+    elif int(converter.lobby_money / 100) == 2:
         two.draw(325, 600)
-    elif int(sum_score / 100) == 3:
+    elif int(converter.lobby_money / 100) == 3:
         three.draw(325, 600)
-    elif int(sum_score / 100) == 4:
+    elif int(converter.lobby_money / 100) == 4:
         four.draw(325, 600)
-    elif int(sum_score / 100) == 5:
+    elif int(converter.lobby_money / 100) == 5:
         five.draw(325, 600)
-    elif int(sum_score / 100) == 6:
+    elif int(converter.lobby_money / 100) == 6:
         six.draw(325, 600)
-    elif int(sum_score / 100) == 7:
+    elif int(converter.lobby_money / 100) == 7:
         seven.draw(325, 600)
-    elif int(sum_score / 100) == 8:
+    elif int(converter.lobby_money / 100) == 8:
         eight.draw(325, 600)
-    elif int(sum_score / 100) == 9:
+    elif int(converter.lobby_money / 100) == 9:
         nine.draw(325, 600)
 
     update_canvas()
