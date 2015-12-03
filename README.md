@@ -98,3 +98,7 @@
 -모든 스테이지 젤리 아이템 구현
 
 2015.11.22 3차발표 영상 : https://www.youtube.com/watch?v=OUKEyOj5sqI&feature=youtu.be
+
+2015.12.02 점수젤리 복사 버그 수정
+
+2015.12.04 체력 동기화 버그 수정
