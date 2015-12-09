@@ -1,0 +1,8 @@
+{
+  "Stage1_Fork" : {"Len":2, "num" : 0, "dir": "Image\\Stage1_Fork.png", "width": 40, "height" : 448 },
+  "Stage1_Fork2" : {"Len":2, "num" : 1, "dir": "Image\\Stage1_Fork2.png" , "width": 80, "height" : 448},
+  "Stage1_thorn4" : {"Len":2, "num" : 2, "dir": "Image\\Stage1_thorn4.png", "width": 35, "height" : 50 },
+  "Stage1_thorn5" : {"Len":1, "num" : 3, "dir": "Image\\Stage1_thorn5.png", "width": 90, "height" : 35 },
+  "item_jelly": {"Len": 15, "num" : 4, "dir": "Image\\item_jelly.png", "width": 25, "height" : 35 },
+  "hp_jelly": {"Len": 1, "num" : 5, "dir": "Image\\hp_jelly.png", "width": 25, "height" : 35 }
+}

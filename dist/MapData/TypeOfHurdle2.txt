@@ -1,0 +1,6 @@
+{
+  "Stage1_Fork" : {"Len":1, "num" : 0, "dir": "Image\\Stage1_Fork.png", "width": 40, "height" : 448 },
+  "Stage1_thorn4" : {"Len":2, "num" : 1, "dir": "Image\\Stage1_thorn4.png", "width": 35, "height" : 50},
+  "Stage1_thorn5" : {"Len":3, "num" : 2, "dir": "Image\\Stage1_thorn5.png", "width": 90, "height" : 35 },
+  "item_jelly": {"Len": 19, "num" : 3, "dir": "Image\\item_jelly.png", "width": 25, "height" : 35 }
+}

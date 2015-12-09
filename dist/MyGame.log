@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "mygame.py", line 14, in <module>
+  File "C:\Users\TaekSoo\Desktop\StudyNote\2D\2DGP\2DPythonProgramming\game_framework.py", line 92, in run
+    stack[-1].exit()
+TypeError: 'Image' object is not callable
