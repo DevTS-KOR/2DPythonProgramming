@@ -4,12 +4,13 @@ import converter
 
 import game_framework
 
+TIME_PER_ACTION = 0.2
+ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
+FRAMES_PER_ACTION = 6
 
 class Player:
     Image_init = None
-    TIME_PER_ACTION = 0.2
-    ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
-    FRAMES_PER_ACTION = 6
+
 
     def __init__(self):
         self.x = 150
@@ -20,6 +21,9 @@ class Player:
         self.frame = 0.0
         self.total_frames = 0.0
         self.hp_frame = 0.0
+        if self.total_frames != 0.0 or self.hp_frame != 0.0:
+            self.total_frames = 0.0
+            self.hp_frame = 0.0
         self.hpsize = 0.0
         self.hpmove = 0
         self.big_time = 0
@@ -99,9 +103,9 @@ class Player:
         self.hpmove
 
     def update(self, frame_time, hpsize):
-        self.total_frames += Player.FRAMES_PER_ACTION * Player.ACTION_PER_TIME * frame_time
+        self.total_frames += FRAMES_PER_ACTION * ACTION_PER_TIME * frame_time
         self.hp_frame += self.total_frames
-        print(int((self.hp_frame) / 5000) + self.hpmove)
+        print(hpsize)
         self.hpsize = int((self.hp_frame) / 5000) + self.hpmove + hpsize
         self.frame = int(self.total_frames) % 6
         self.gravity()
@@ -223,6 +227,7 @@ class Player:
 
 
         if self.bool_dead == True and self.result_count == 0:
+            converter.player_hpsize = 0
             self.bgm.stop()
             self.result_sound.play()
             self.result_count += 1
@@ -428,9 +433,6 @@ class Player:
 
 class Player_second:
     Image_init = None
-    TIME_PER_ACTION = 0.2
-    ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
-    FRAMES_PER_ACTION = 6
 
     def __init__(self):
         self.x = 560
@@ -442,6 +444,9 @@ class Player_second:
         self.total_frames = 0.0
         self.hp_frame = 0.0
         self.hpsize = 0.0
+        if self.total_frames != 0.0 or self.hp_frame != 0.0:
+            self.total_frames = 0.0
+            self.hp_frame = 0.0
         self.hpmove = 0
         self.big_time = 0
         self.hp_time = 0
@@ -520,9 +525,10 @@ class Player_second:
         self.hpmove
 
     def update(self, frame_time, hpsize):
-        self.total_frames += Player.FRAMES_PER_ACTION * Player.ACTION_PER_TIME * frame_time
+        self.total_frames += FRAMES_PER_ACTION * ACTION_PER_TIME * frame_time
         self.hp_frame += self.total_frames / 2
-        print(int((self.hp_frame) / 5000) + self.hpmove)
+        #print(int((self.hp_frame) / 5000) + self.hpmove)
+        print(hpsize)
         self.hpsize = int((self.hp_frame) / 5000) + self.hpmove + hpsize
         self.frame = int(self.total_frames) % 6
         self.gravity()
@@ -640,6 +646,7 @@ class Player_second:
 
 
         if self.bool_dead == True and self.result_count == 0:
+            converter.player_hpsize = 0
             self.bgm.stop()
             self.result_sound.play()
             self.result_count += 1
@@ -847,9 +854,6 @@ class Player_second:
 
 class Player_third:
     Image_init = None
-    TIME_PER_ACTION = 0.2
-    ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
-    FRAMES_PER_ACTION = 6
 
     def __init__(self):
         self.x = 650
@@ -861,6 +865,9 @@ class Player_third:
         self.total_frames = 0.0
         self.hp_frame = 0.0
         self.hpsize = 0.0
+        if self.total_frames != 0.0 or self.hp_frame != 0.0:
+            self.total_frames = 0.0
+            self.hp_frame = 0.0
         self.hpmove = 0
         self.big_time = 0
         self.hp_time = 0
@@ -939,9 +946,10 @@ class Player_third:
         self.hpmove
 
     def update(self, frame_time, hpsize):
-        self.total_frames += Player.FRAMES_PER_ACTION * Player.ACTION_PER_TIME * frame_time
+        self.total_frames += FRAMES_PER_ACTION * ACTION_PER_TIME * frame_time
         self.hp_frame += self.total_frames / 3
-        print(int((self.hp_frame) / 5000) + self.hpmove)
+        #print(int((self.hp_frame) / 5000) + self.hpmove)
+        print(hpsize)
         self.hpsize = int((self.hp_frame) / 5000) + self.hpmove + hpsize
         self.frame = int(self.total_frames) % 6
         self.gravity()
@@ -1074,6 +1082,7 @@ class Player_third:
 
 
         if self.bool_dead == True and self.result_count == 0:
+            converter.player_hpsize = 0
             self.bgm.stop()
             self.result_sound.play()
             self.result_count += 1
@@ -1279,9 +1288,6 @@ class Player_third:
 
 class Player_four:
     Image_init = None
-    TIME_PER_ACTION = 0.2
-    ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
-    FRAMES_PER_ACTION = 6
 
     def __init__(self):
         self.x = 240
@@ -1293,6 +1299,9 @@ class Player_four:
         self.total_frames = 0.0
         self.hp_frame = 0.0
         self.hpsize = 0.0
+        if self.total_frames != 0.0 or self.hp_frame != 0.0:
+            self.total_frames = 0.0
+            self.hp_frame = 0.0
         self.hpmove = 0
         self.big_time = 0
         self.hp_time = 0
@@ -1371,9 +1380,10 @@ class Player_four:
         self.hpmove
 
     def update(self, frame_time, hpsize):
-        self.total_frames += Player.FRAMES_PER_ACTION * Player.ACTION_PER_TIME * frame_time
+        self.total_frames += FRAMES_PER_ACTION * ACTION_PER_TIME * frame_time
         self.hp_frame += self.total_frames / 4
-        print(int((self.hp_frame) / 5000) + self.hpmove)
+        #print(int((self.hp_frame) / 5000) + self.hpmove)
+        print(hpsize)
         self.hpsize = int((self.hp_frame) / 5000) + self.hpmove + hpsize
         self.frame = int(self.total_frames) % 6
         self.gravity()
@@ -1489,6 +1499,7 @@ class Player_four:
 
 
         if self.bool_dead == True and self.result_count == 0:
+            converter.player_hpsize = 0
             self.bgm.stop()
             self.result_sound.play()
             self.result_count += 1
